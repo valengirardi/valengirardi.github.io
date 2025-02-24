@@ -1,133 +1,100 @@
-/* Reset básico */
-* {
+/* styles.css */
+
+/* Variables de Colores y Tipografía */
+:root {
+  --color-primario: #1e90ff;   /* Color primario (azul vibrante) */
+  --color-acento:   #ff6347;   /* Color de acento (rojo/naranja suave) */
+  --color-fondo:    #ffffff;   /* Fondo blanco */
+  --color-texto:    #333333;   /* Texto oscuro para buena legibilidad */
+}
+
+/* Estilos Globales */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #fff;
-  font-family: 'Lato', sans-serif;
-  color: #333;
-  line-height: 1.4;
-  padding: 20px;
-}
-
-/* Usamos Montserrat para títulos */
-h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 8px;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Contenedor principal en dos columnas */
-.cv-container {
-  display: grid;
-  grid-template-columns: 35% 65%;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Columnas */
-.left-column, .right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Estilo de recuadros (cards) */
-.card {
-  background-color: #fefefe;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-/* Encabezado */
-.header-card {
-  text-align: center;
-  border: none;
-  border-bottom: 3px solid #000;
-  padding-bottom: 15px;
-  margin-bottom: 30px;
-}
-.header-card h1 {
-  font-size: 2.5rem;
-  color: #000;
-}
-.header-card .name-short {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.header-card .degree,
-.header-card .dates,
-.header-card .institution {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-/* Títulos de secciones */
-.section-card h2 {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  color: #000;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-/* Bloques de Educación y Experiencia */
-.edu-block, .work-block {
-  margin-bottom: 10px;
-}
-.edu-block h3, .work-block h3 {
-  font-size: 1.1rem;
-  color: #000;
-  margin-bottom: 3px;
-}
-.dates {
-  font-style: italic;
-  color: #777;
-  font-size: 0.9rem;
-  margin-bottom: 3px;
-}
-
-/* Listas (Lenguajes y Habilidades) */
-.card ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-.card ul li {
-  margin-bottom: 5px;
-  font-size: 0.95rem;
-}
-
-/* Glóbulo en Contacto */
-.bubble {
-  background-color: #e0e0e0;
-  padding: 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* Enlaces */
+/* Estilos para Enlaces */
 a {
-  color: #333;
+  color: var(--color-primario);
   text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+  transition: color 0.3s ease;
 }
 
-/* Adaptación para dispositivos móviles */
+a:hover {
+  color: var(--color-acento);
+}
+
+/* Elementos Decorativos: Bubbles */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  z-index: -1; /* Se ubican detrás del contenido */
+}
+
+.bubble1 {
+  width: 120px;
+  height: 120px;
+  background-color: var(--color-primario);
+  top: -60px;
+  left: -60px;
+}
+
+.bubble2 {
+  width: 150px;
+  height: 150px;
+  background-color: var(--color-acento);
+  bottom: -75px;
+  right: -75px;
+}
+
+/* Contenedor Principal y Distribución de Secciones */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+/* Estilo para cada Sección del Contenido */
+.section {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el Encabezado */
+header {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2em;
+}
+
+/* Responsividad en la Tipografía */
 @media (max-width: 768px) {
-  .cv-container {
-    grid-template-columns: 1fr;
+  header h1 {
+    font-size: 2em;
+  }
+  
+  header p {
+    font-size: 1em;
   }
 }
+
 
 
