@@ -1,39 +1,35 @@
 /* Reset de estilos */
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Variables de colores */
-:root {
-  --color-fondo: #f7f7f7;
-  --color-texto: #333;
-  --color-primario: #1e90ff;   /* Nuevo color primario */
-  --color-acento:   #ff6347;   /* Nuevo color de acento */
-  --color-card-bg:  #fefefe;
-  --color-border:   #ccc;
-  --color-header:   #000;
-  --color-link:     #333;
-}
-
 /* Fuente base y fondo */
 body {
-  background-color: var(--color-fondo);
+  background-color: #fff;
   font-family: 'Lato', sans-serif;
-  color: var(--color-texto);
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.5;
   line-height: 1.4;
   padding: 20px;
 }
 
 /* Encabezados con Montserrat */
+/* Usamos Montserrat para títulos */
 h1, h2, h3 {
   font-family: 'Montserrat', sans-serif;
+  margin-bottom: 10px;
   margin-bottom: 8px;
 }
 
 /* Contenedor principal con dos columnas */
+/* Contenedor principal en dos columnas */
 .cv-container {
+  display: flex;
+  flex-wrap: wrap;
   display: grid;
   grid-template-columns: 35% 65%;
   gap: 20px;
@@ -43,15 +39,15 @@ h1, h2, h3 {
 
 /* Sidebar (columna izquierda) */
 .sidebar {
+  width: 30%;
   padding: 20px;
 }
 
 /* Contenido principal (columna derecha) */
 .main-content {
+  width: 70%;
   padding: 20px;
-}
-
-/* Columnas internas si se usan */
+/* Columnas */
 .left-column, .right-column {
   display: flex;
   flex-direction: column;
@@ -59,87 +55,99 @@ h1, h2, h3 {
 }
 
 /* Estilo de los recuadros (cards) */
+/* Estilo de recuadros (cards) */
 .card {
-  background-color: var(--color-card-bg);
-  border-left: 6px solid var(--color-primario);
-  border: 1px solid var(--color-border);
-  padding: 15px;
+  background-color: #fff;
+  border-left: 6px solid #007acc;
+  padding: 15px 20px;
   margin-bottom: 20px;
-  border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 4px;
 }
 
-/* Tarjeta de encabezado */
+/* Tarjeta de encabezado: sin borde izquierdo, pero con línea inferior para resaltar */
+/* Encabezado */
 .header-card {
   text-align: center;
-  border-bottom: 3px solid var(--color-primario);
+  border-left: none;
+  border-bottom: 3px solid #007acc;
+  padding-bottom: 20px;
+  border: none;
+  border-bottom: 3px solid #000;
   padding-bottom: 15px;
   margin-bottom: 30px;
 }
 
 .header-card h1 {
   font-size: 2.5rem;
-  color: var(--color-header);
+  color: #007acc;
+  color: #000;
 }
 
+.header-card p {
 .header-card .name-short {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
-
 .header-card .degree,
 .header-card .dates,
 .header-card .institution {
   font-size: 1rem;
   margin: 5px 0;
   color: #555;
+  margin-bottom: 5px;
 }
 
+.header-card .small {
 /* Títulos de secciones */
 .section-card h2 {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-/* Títulos de recuadros dentro de cards */
+/* Títulos de sección */
 .card h2 {
   font-size: 1.5rem;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 5px;
+  color: #000;
   margin-bottom: 10px;
-  color: var(--color-primario);
+  color: #007acc;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
 }
 
 /* Elementos de Educación y Experiencia */
 .edu-item, .work-item {
   margin-bottom: 15px;
-}
-
+/* Bloques de Educación y Experiencia */
 .edu-block, .work-block {
   margin-bottom: 10px;
 }
 
 .edu-item h3, .work-item h3 {
   font-size: 1.2rem;
-  color: var(--color-primario);
-}
-
+  color: #007acc;
 .edu-block h3, .work-block h3 {
   font-size: 1.1rem;
-  color: var(--color-header);
+  color: #000;
   margin-bottom: 3px;
 }
 
 .dates {
   font-style: italic;
+  color: #666;
+  margin-bottom: 5px;
   color: #777;
   font-size: 0.9rem;
   margin-bottom: 3px;
 }
 
 /* Listas dentro de los recuadros */
+/* Listas (Lenguajes y Habilidades) */
 .card ul {
   list-style-type: disc;
   padding-left: 20px;
@@ -151,21 +159,26 @@ h1, h2, h3 {
   font-size: 0.95rem;
 }
 
-/* Estilo para las "bubbles" (glóbulos) decorativas */
-/* Si deseas destacar información con un fondo circular o resaltado */
+/* Estilo para el "globo" en la sección de Contacto */
+/* Glóbulo en Contacto */
 .bubble {
-  display: inline-block;
+  background-color: #007acc;
+  color: #fff;
   padding: 10px 15px;
   border-radius: 25px;
-  background-color: var(--color-acento);
-  color: #fff;
-  font-size: 0.95rem;
+  margin-bottom: 15px;
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 20px;
   margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 /* Enlaces */
 a {
-  color: var(--color-link);
+  color: #007acc;
+  color: #333;
   text-decoration: none;
 }
 
@@ -174,14 +187,15 @@ a:hover {
 }
 
 /* Ajustes para dispositivos móviles */
+/* Adaptación para dispositivos móviles */
 @media (max-width: 768px) {
   .cv-container {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   .sidebar, .main-content {
     width: 100%;
+    grid-template-columns: 1fr;
   }
 }
-
 
 
