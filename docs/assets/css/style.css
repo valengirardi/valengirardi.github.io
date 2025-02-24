@@ -1,95 +1,138 @@
+/* 
+  Estilos inspirados en un CV con elementos de “burbujas”, 
+  tipografías combinadas y colores pastel/vibrantes 
+*/
+
+/* Paleta de colores (ajusta a tu PDF) */
 :root {
-  /* Example color palette */
-  --color-primary: #4f46e5;  /* Vivid blue/purple */
-  --color-accent: #ec4899;   /* Strong pink */
-  --color-background: #f5f7ff;
+  --color-primary: #49c6e5;  /* Turquesa pastel (ajusta si tu PDF usa otro tono) */
+  --color-secondary: #f472b6; /* Rosado pastel (ajusta también) */
+  --color-bg: #fefefe;
   --color-text: #333;
 }
 
+/* RESET BÁSICO */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  background: var(--color-bg);
+  font-family: 'Montserrat', sans-serif;
   color: var(--color-text);
-  background: var(--color-background);
   line-height: 1.6;
+  position: relative;
 }
 
+/* Burbujas de fondo */
+.bg-bubble {
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1; /* atrás del contenido */
+  opacity: 0.3;
+}
+
+/* Ejemplo de 3 burbujas ajustadas en diferentes posiciones y tamaños */
+.bubble1 {
+  width: 400px;
+  height: 400px;
+  background: var(--color-primary);
+  top: -100px;
+  left: -100px;
+}
+
+.bubble2 {
+  width: 300px;
+  height: 300px;
+  background: var(--color-secondary);
+  top: 50%;
+  right: -150px;
+  transform: translateY(-50%);
+}
+
+.bubble3 {
+  width: 350px;
+  height: 350px;
+  background: var(--color-primary);
+  bottom: -100px;
+  left: 30%;
+}
+
+/* HEADER / HERO */
 header {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 50%,
-    var(--color-accent) 50%
-  );
-  color: #fff;
-  padding: 4rem 2rem;
+  padding: 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-header .hero-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  font-family: 'Pacifico', cursive;
-}
-
-header .hero-subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-nav {
+nav ul {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  list-style: none;
   margin-bottom: 2rem;
 }
 
 nav a {
-  color: #fff;
   text-decoration: none;
+  color: var(--color-text);
   font-weight: 600;
-  padding: 0.5rem 1rem;
-  transition: background 0.3s;
+  transition: color 0.3s;
 }
 
 nav a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  color: var(--color-primary);
+}
+
+.hero-text {
+  margin-top: 2rem;
+}
+
+/* Nombre principal con otra tipografía (Pacifico) */
+.name-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text);
 }
 
 .btn-cta {
-  background-color: #fff;
-  color: var(--color-primary);
+  display: inline-block;
+  margin-top: 1.5rem;
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
+  background: var(--color-primary);
+  color: #fff;
   font-weight: 700;
   text-decoration: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease;
 }
 
 .btn-cta:hover {
-  background-color: var(--color-accent);
-  color: #fff;
+  background: var(--color-secondary);
 }
 
+/* SECCIONES */
 section {
   max-width: 1000px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
+  position: relative;
 }
 
 section h2 {
   font-size: 2rem;
   color: var(--color-primary);
-  margin-bottom: 1rem;
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .content-block {
@@ -101,9 +144,9 @@ section h2 {
 }
 
 .content-block h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: var(--color-accent);
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
 }
 
 .content-block p {
@@ -111,28 +154,34 @@ section h2 {
   line-height: 1.5;
 }
 
-.skills-list,
-.education-list,
-.languages-list {
+.skills-list {
   list-style: disc;
   margin-left: 1.5rem;
 }
 
+/* FOOTER */
 footer {
   text-align: center;
   padding: 2rem 1rem;
-  color: #888;
+  font-size: 0.9rem;
+  color: #666;
+  background: #f9f9f9;
 }
 
-/* Responsive: for screens up to 600px wide */
+/* RESPONSIVE: Ajustes en pantallas pequeñas */
 @media (max-width: 600px) {
-  header .hero-title {
-    font-size: 2rem;
+  .name-title {
+    font-size: 1.8rem;
   }
-
-  header .hero-subtitle {
+  .subtitle {
     font-size: 1rem;
   }
+
+  nav ul {
+    flex-wrap: wrap;
+  }
+
+  .bg-bubble {
+    opacity: 0.15; /* reduce si las burbujas estorban en pantallas pequeñas */
+  }
 }
-
-
