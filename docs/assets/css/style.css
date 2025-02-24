@@ -1,200 +1,137 @@
-/* Reset de estilos */
-/* Reset básico */
+:root {
+  /* Example color palette */
+  --color-primary: #4f46e5;  /* Vivid blue/purple */
+  --color-accent: #ec4899;   /* Strong pink */
+  --color-background: #f5f7ff;
+  --color-text: #333;
+}
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* Fuente base y fondo */
 body {
-  background-color: #fff;
-  font-family: 'Lato', sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  line-height: 1.5;
-  line-height: 1.4;
-  padding: 20px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  line-height: 1.6;
 }
 
-/* Encabezados con Montserrat */
-/* Usamos Montserrat para títulos */
-h1, h2, h3 {
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 10px;
-  margin-bottom: 8px;
+header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 50%,
+    var(--color-accent) 50%
+  );
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Contenedor principal con dos columnas */
-/* Contenedor principal en dos columnas */
-.cv-container {
+header .hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Pacifico', cursive;
+}
+
+header .hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+nav {
   display: flex;
-  flex-wrap: wrap;
-  display: grid;
-  grid-template-columns: 35% 65%;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-/* Sidebar (columna izquierda) */
-.sidebar {
-  width: 30%;
-  padding: 20px;
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: background 0.3s;
 }
 
-/* Contenido principal (columna derecha) */
-.main-content {
-  width: 70%;
-  padding: 20px;
-/* Columnas */
-.left-column, .right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Estilo de los recuadros (cards) */
-/* Estilo de recuadros (cards) */
-.card {
-  background-color: #fff;
-  border-left: 6px solid #007acc;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  background-color: #fefefe;
-  border: 1px solid #ccc;
-  padding: 15px;
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
-/* Tarjeta de encabezado: sin borde izquierdo, pero con línea inferior para resaltar */
-/* Encabezado */
-.header-card {
-  text-align: center;
-  border-left: none;
-  border-bottom: 3px solid #007acc;
-  padding-bottom: 20px;
-  border: none;
-  border-bottom: 3px solid #000;
-  padding-bottom: 15px;
-  margin-bottom: 30px;
-}
-
-.header-card h1 {
-  font-size: 2.5rem;
-  color: #007acc;
-  color: #000;
-}
-
-.header-card p {
-.header-card .name-short {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.header-card .degree,
-.header-card .dates,
-.header-card .institution {
-  font-size: 1rem;
-  margin: 5px 0;
-  color: #555;
-  margin-bottom: 5px;
-}
-
-.header-card .small {
-/* Títulos de secciones */
-.section-card h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Títulos de sección */
-.card h2 {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  color: #000;
-  margin-bottom: 10px;
-  color: #007acc;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
-}
-
-/* Elementos de Educación y Experiencia */
-.edu-item, .work-item {
-  margin-bottom: 15px;
-/* Bloques de Educación y Experiencia */
-.edu-block, .work-block {
-  margin-bottom: 10px;
-}
-
-.edu-item h3, .work-item h3 {
-  font-size: 1.2rem;
-  color: #007acc;
-.edu-block h3, .work-block h3 {
-  font-size: 1.1rem;
-  color: #000;
-  margin-bottom: 3px;
-}
-
-.dates {
-  font-style: italic;
-  color: #666;
-  margin-bottom: 5px;
-  color: #777;
-  font-size: 0.9rem;
-  margin-bottom: 3px;
-}
-
-/* Listas dentro de los recuadros */
-/* Listas (Lenguajes y Habilidades) */
-.card ul {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-left: 20px;
-}
-
-.card ul li {
-  margin-bottom: 5px;
-  font-size: 0.95rem;
-}
-
-/* Estilo para el "globo" en la sección de Contacto */
-/* Glóbulo en Contacto */
-.bubble {
-  background-color: #007acc;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 25px;
-  margin-bottom: 15px;
-  background-color: #e0e0e0;
-  padding: 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* Enlaces */
-a {
-  color: #007acc;
-  color: #333;
+.btn-cta {
+  background-color: #fff;
+  color: var(--color-primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 700;
   text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a:hover {
-  text-decoration: underline;
+.btn-cta:hover {
+  background-color: var(--color-accent);
+  color: #fff;
 }
 
-/* Ajustes para dispositivos móviles */
-/* Adaptación para dispositivos móviles */
-@media (max-width: 768px) {
-  .cv-container {
-    flex-direction: column;
+section {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.content-block {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  margin-bottom: 2rem;
+}
+
+.content-block h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+}
+
+.content-block p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.skills-list,
+.education-list,
+.languages-list {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #888;
+}
+
+/* Responsive: for screens up to 600px wide */
+@media (max-width: 600px) {
+  header .hero-title {
+    font-size: 2rem;
   }
-  .sidebar, .main-content {
-    width: 100%;
-    grid-template-columns: 1fr;
+
+  header .hero-subtitle {
+    font-size: 1rem;
   }
 }
 
