@@ -1,0 +1,97 @@
+/* Reset and basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+header {
+  background: #f8f8f8;
+  padding: 2rem 0;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.header-container h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.header-container .subtitle {
+  font-size: 1.5rem;
+  color: #777;
+  margin-bottom: 0.5rem;
+}
+
+.header-container .tagline {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Sections */
+section {
+  margin: 2rem 0;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.item {
+  margin-bottom: 1.5rem;
+}
+
+.item h3 {
+  font-size: 1.5rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Lists */
+ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
+a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Contact section */
+#contact p {
+  margin-bottom: 0.8rem;
+}
