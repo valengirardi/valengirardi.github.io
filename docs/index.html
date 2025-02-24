@@ -1,126 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Personal website for Valentina Girardi - Bioinformatics & Data Science" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valentina Girardi - Bioinformatics & Data Science</title>
-  
-  <!-- Google Fonts (ejemplo) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&family=Pacifico&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Archivo de estilos externo -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valentina Girardi - CV</title>
+  <!-- Google Fonts: Montserrat for headings and Lato for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <div class="cv-container">
+    <!-- Sidebar (left column) -->
+    <aside class="sidebar">
+      <!-- Encabezado con nombre y datos principales -->
+      <div class="card header-card">
+        <h1>Valentina Girardi</h1>
+        <p>PhD in Biological Sciences - Bioinformatics & Data Science</p>
+      </div>
+      <!-- Sección de Educación -->
+      <div class="card section-card">
+        <h2>EDUCATION</h2>
+         <div class="edu-item">
+          <h3>PhD in Biological Sciences</h3>
+          <p class="dates">2021 - 2025</p>
+          <p>Universidad Nacional de Rosario</p>
+        </div>
+        <div class="edu-item">
+          <h3>Environmental Engineering</h3>
+          <p class="dates">2014 - 2020</p>
+          <p>Pontificia Universidad Católica Argentina</p>
+        </div>
+        <div class="edu-item">
+          <h3>B.Sc in Environmental Sciences</h3>
+          <p class="dates">2017 - 2018</p>
+          <p>Universitat de València</p>
+        </div>
+      </div>
+      <!-- Sección de Idiomas -->
+      <div class="card section-card">
+        <h2>LANGUAGES</h2>
+        <ul>
+          <li>Spanish (Professional)</li>
+          <li>English (Professional)</li>
+          <li>Italian (Basic)</li>
+        </ul>
+      </div>
+    </aside>
 
-  <!-- Encabezado / Hero -->
-  <header>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <h1 class="hero-title">Valentina Girardi</h1>
-    <h2 class="hero-subtitle">PhD in Biological Sciences - Bioinformatics & Data Science</h2>
-    <a href="#about" class="btn-cta">Learn more</a>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="content-block">
-      <p>
-        I am a PhD candidate (2021 - 2025) in Biological Sciences at the National University of Rosario,
-        under the Argentinian National Council of Scientific and Technical Research (CONICET). I navigate
-        vast experimental environmental datasets, applying bioinformatics to turn raw data into meaningful
-        insights that drive scientific discovery.
-      </p>
-      <p>
-        Decoding microbial ecosystems through data — where bioinformatics, machine learning, and biotechnology
-        meet to optimize bioprocesses. I dive into sequencing data to map microbial life, uncover hidden
-        interactions, predict system dynamics, and transform complexity into sustainable solutions.
-      </p>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="content-block">
-      <h3>PhD in Biological Sciences</h3>
-      <p>2021 - 2025 | Universidad Nacional de Rosario (Argentina)</p>
-
-      <h3>Environmental Engineering</h3>
-      <p>2014 - 2020 | Pontificia Universidad Católica Argentina</p>
-
-      <h3>B.Sc in Environmental Sciences</h3>
-      <p>2017 - 2018 | Universitat de València</p>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <div class="content-block">
-      <h3>PhD Candidate (2021 - 2025)</h3>
-      <p>
-        Argentinian National Council of Scientific and Technical Research (CONICET).
-        Focused on bioinformatics and data analysis of environmental and microbial datasets.
-      </p>
-
-      <h3>Freelance Consulting (2022 - 2025)</h3>
-      <p>
-        Provided bioinformatics consulting to strengthen the capabilities of local start-ups.
-      </p>
-
-      <p><strong>Check out some of my projects on GitHub:</strong> 
-        <a href="https://github.com/valengirardi" target="_blank" rel="noopener">github.com/valengirardi</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>My Skills</h2>
-    <div class="content-block">
-      <ul class="skills-list">
-        <li>Solid foundation in bioinformatics, with expertise in analyzing NGS data and performing statistical analyses on large datasets.</li>
-        <li>Proficient in R, Python, UNIX bash, statistical tools, and data visualization platforms.</li>
-        <li>Skilled in writing well-documented code and experienced with version control systems (GitHub).</li>
-        <li>Experienced in developing web applications (Streamlit).</li>
-        <li>Strong analytical skills with the ability to solve complex data-related problems.</li>
-        <li>Clear and effective communicator, both in writing and speaking.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="content-block">
-      <p><strong>Languages:</strong> Spanish (Professional proficiency), English (Professional proficiency), Italian (Basic proficiency).</p>
-      <p><strong>LinkedIn:</strong> 
-        <a href="https://www.linkedin.com/in/girardivalentina/" target="_blank" rel="noopener">
-          linkedin.com/in/girardivalentina
-        </a>
-      </p>
-      <p><strong>Email:</strong> <a href="mailto:valengirardi@hotmail.com">valengirardi@hotmail.com</a></p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Valentina Girardi. All rights reserved.</p>
-  </footer>
+    <!-- Contenido principal (right column) -->
+    <main class="main-content">
+      <!-- Perfil / Resumen -->
+      <div class="card section-card">
+        <h2>PROFILE</h2>
+        <p>
+          Decoding microbial ecosystems through data - where bioinformatics, machine learning, and biotechnology meet to optimize bioprocesses. I dive into sequencing data to map microbial life, uncover hidden interactions, predict system dynamics, and transform complexity into sustainable solutions.
+        </p>
+      </div>
+      <!-- Experiencia Laboral -->
+      <div class="card section-card">
+        <h2>WORK EXPERIENCE</h2>
+        <div class="work-item">
+          <h3>Freelance Consulting</h3>
+          <p class="dates">2022 - 2025</p>
+          <p>I delivered bioinformatics consulting to strengthen the capabilities of local start-ups.</p>
+        </div>
+      </div>
+      <!-- Habilidades -->
+      <div class="card section-card">
+        <h2>SKILLS</h2>
+        <ul>
+          <li>Solid foundation in bioinformatics, analyzing NGS data and large datasets</li>
+          <li>Proficient in programming (R, Python, UNIX bash), statistical tools, and data visualization</li>
+          <li>Experienced with version control (GitHub) and writing well-documented code</li>
+          <li>Developing web applications (Streamlit)</li>
+          <li>Strong analytical and problem-solving skills</li>
+          <li>Clear and effective communicator</li>
+        </ul>
+      </div>
+      <!-- Contacto -->
+      <div class="card section-card">
+        <h2>CONTACT</h2>
+        <div class="bubble">
+          <p>
+            Decoding microbial ecosystems through data - where bioinformatics, machine learning, and biotechnology meet to optimize bioprocesses. I dive into sequencing data to map microbial life, uncover hidden interactions, predict system dynamics, and transform complexity into sustainable solutions.
+          </p>
+        </div>
+        <p>Email: <a href="mailto:valengirardi@hotmail.com">valengirardi@hotmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/valengirardi" target="_blank">github.com/valengirardi</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/girardivalentina/" target="_blank">linkedin.com/in/girardivalentina/</a></p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
-
