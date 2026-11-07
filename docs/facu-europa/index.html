@@ -663,6 +663,12 @@ details.more[open] summary::after { content: " –"; }
 
 .offline-card.app-link { text-decoration: none; color: var(--ink); }
 
+.day-pager { display: flex; justify-content: space-between; gap: 10px; }
+.pg-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--tone); color: var(--ink); text-decoration: none; font-weight: 700; font-size: 15px; max-width: 48%; }
+.pg-btn span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pg-btn.off { visibility: hidden; }
+@media (hover: hover) { .pg-btn:hover { background: var(--line); } }
+
 </style>
 </head>
 <body>
@@ -1943,6 +1949,12 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     return out;
   }
 
+  function pagerHTML(city, dayId) {
+    const ids = [...city.days.map(d => [d.id, d.tab]), ["info", "Info"]];
+    const i = ids.findIndex(x => x[0] === dayId); const prev = ids[i - 1], next = ids[i + 1];
+    const btn = (x, dir) => x ? `<a class="pg-btn" href="#${city.id}-${x[0]}" aria-label="${dir === "prev" ? "Día anterior" : "Día siguiente"}: ${esc(x[1])}">${dir === "prev" ? "‹" : ""}<span>${esc(x[1])}</span>${dir === "next" ? "›" : ""}</a>` : `<span class="pg-btn off" aria-hidden="true"></span>`;
+    return `<nav class="day-pager" aria-label="Cambiar de día">${btn(prev, "prev")}${btn(next, "next")}</nav>`;
+  }
   function showDay(city, dayId, scroll) {
     if (dayId !== "info" && !city.days.some(d => d.id === dayId)) dayId = city.days[0].id;
     ui.day = dayId; keep("facu-ui-v1", ui);
@@ -1988,7 +2000,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     const i = CITIES.indexOf(city), prevC = CITIES[i - 1], nextC = CITIES[i + 1];
     const hotelBtn = city.hotel ? `<a class="btn btn-soft" href="${DIR(city.hotel)}" target="_blank" rel="noopener">${I("hotel")}Volver al hotel</a>` : "";
     const visitedCount = seq.filter(id => visited.has(id)).length;
-    return `
+    return `${pagerHTML(city, dayId)}
       <div class="day-head">
         <p class="eyebrow">${esc(day.when)}${seq.length ? ` · ${seq.length} paradas${visitedCount ? ` · ${visitedCount} visitadas` : ""}` : ""}</p>
         <h2>${esc(day.title)}</h2>
@@ -2011,7 +2023,8 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
       </div></div>
       <div class="day-foot">
         ${walks.length ? `<div class="sec-title" style="margin:0"><h2 style="font-size:26px">Recorrido a pie</h2></div><div class="walk-links">${walks.map((w, k) => `<a href="${w.url}" target="_blank" rel="noopener">${I("route")}<span>${walks.length > 1 ? `Tramo ${k + 1}: ` : ""}${esc(w.label)}<small>${w.n} paradas en Google Maps</small></span></a>`).join("")}</div>` : ""}
-        <p class="swipe-hint">Deslizá hacia los costados para cambiar de día</p>
+        ${pagerHTML(city, dayId)}
+        <p class="swipe-hint">También podés deslizar desde el centro de la pantalla para cambiar de día</p>
         <div class="city-nav">${prevC ? `<a href="#${prevC.id}"><small>← Anterior</small><b>${prevC.name}</b></a>` : "<span></span>"}${nextC ? `<a class="next" href="#${nextC.id}"><small>Siguiente →</small><b>${nextC.name}</b></a>` : `<a class="next" href="#inicio"><small>Fin del viaje</small><b>Inicio</b></a>`}</div>
       </div>`;
   }
@@ -2029,7 +2042,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     const ids = [...new Set(city.days.flatMap(d => d.blocks.flatMap(b => b.stops)))];
     const v = ids.filter(id => visited.has(id)).length;
     parts.push(`<div class="info-card"><h3>Tu avance</h3><p style="color:var(--muted);font-size:15px">${v} de ${ids.length} lugares visitados en ${city.name}.</p><div class="progress-line"><i style="width:${ids.length ? v / ids.length * 100 : 0}%"></i></div></div>`);
-    return `<div class="day-head"><p class="eyebrow">${city.country} · ${city.dates}</p><h2>Datos de ${city.name}</h2></div><div class="info-grid">${parts.join("")}</div>`;
+    return `${pagerHTML(city, "info")}<div class="day-head"><p class="eyebrow">${city.country} · ${city.dates}</p><h2>Datos de ${city.name}</h2></div><div class="info-grid">${parts.join("")}</div>`;
   }
 
   /* Botones de favorito / visitado / elegir */
@@ -2062,7 +2075,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     }, { passive: true });
     document.addEventListener("touchend", e => {
       if (!ok || sheetOpen) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.8) return;
+      if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
       const city = CITY_BY_ID[ui.city]; if (!city) return;
       const ids = [...city.days.map(d => d.id), "info"]; const i = ids.indexOf(ui.day);
       const nx = ids[i + (dx < 0 ? 1 : -1)]; if (!nx) return;
