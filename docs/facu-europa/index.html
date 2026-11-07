@@ -661,6 +661,8 @@ details.more[open] summary::after { content: " –"; }
 .net-pill { position: fixed; z-index: 90; left: 50%; transform: translateX(-50%); top: calc(var(--safe-t) + 8px); background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 650; padding: 7px 14px; border-radius: 999px; max-width: calc(100% - 24px); text-align: center; box-shadow: var(--shadow); }
 @media (min-width: 900px) { .home-body > .offline-card { grid-column: 1 / -1; } .net-pill { top: calc(var(--topnav) + 8px); } }
 
+.offline-card.app-link { text-decoration: none; color: var(--ink); }
+
 </style>
 </head>
 <body>
@@ -1652,6 +1654,18 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
   const defaultCity = () => todayKey ? todayKey.split("-")[0] : "lisboa";
   function updateSavedBadge() {}
   const toTop = (y = 0) => { window.scrollTo(0, y); requestAnimationFrame(() => window.scrollTo(0, y)); };
+  /* Tocar la pestaña en la que ya estás (o tocarla dos veces) te lleva arriba de todo */
+  tabbar.addEventListener("click", e => {
+    const a = e.target.closest("a[data-tab]"); if (!a) return;
+    const tab = a.dataset.tab === "brand" ? "inicio" : a.dataset.tab;
+    if (tab !== curTab) return;
+    e.preventDefault();
+    if (sheetOpen) closeSheet();
+    if (tab === "mapa") { if (mapState && mapState.reset) mapState.reset(); return; }
+    const smooth = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+    window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+    scrollMem[tab] = 0;
+  });
   function showPage() { mapview.hidden = true; view.hidden = false; document.body.classList.remove("lock"); }
 
   /* ---------- Router ---------- */
@@ -1791,7 +1805,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
       <div class="tiles" role="img" aria-label="Panel de azulejos portugueses"></div>
     </header>
     <div class="wrap home-body">
-      ${window.__PWA ? '<section id="offline-card" class="offline-card" hidden></section>' : ""}
+      ${window.__PWA ? '<section id="offline-card" class="offline-card" hidden></section>' : `<a class="offline-card app-link" href="https://valengirardi.github.io/facu-europa/" target="_blank" rel="noopener"><div class="oc-row"><span class="oc-ic">${I("bag")}</span><div><b>Instalá la app para usarla sin conexión</b><p>Abrí este enlace en Safari, tocá Compartir → Agregar a inicio y, desde la app, Descargar todo.</p></div></div></a>`}
       ${todayHTML}
       ${nl ? `<section><div class="sec-title"><h2>Próximo traslado</h2><a href="#viaje-pasajes">Todos</a></div>${nl}</section>` : ""}
       <section id="inicio-ciudades">
@@ -2374,6 +2388,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     mapState = {
       city: city.id, map: null, update, focus,
       refresh: () => { update(false); if (state.sel) { const s = state.sel; showPeek(s); } },
+      reset: () => { hidePeek(); fitTo(visible()); },
       setDay: d => { state.day = city.days.some(x => x.id === d) ? d : "all"; update(true); },
       resize: () => { if (map) map.resize(); },
       destroy: () => { try { map && map.remove(); } catch (e) {} mapState = null; }
