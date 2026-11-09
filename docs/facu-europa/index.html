@@ -2645,6 +2645,21 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     V.key = await aesKey(raw, ["decrypt"]);
     const m = await vaultMeta();
     V.index = JSON.parse(td.decode(await vaultFile(m.index)));
+    rememberKey(V.key);
+  }
+  /* Recordar el desbloqueo en este celular: la llave se guarda sin poder leerse ni copiarse (solo sirve para abrir) */
+  const idb = () => new Promise((ok, ko) => { try { const r = indexedDB.open("facu-vault", 1); r.onupgradeneeded = () => r.result.createObjectStore("k"); r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error); } catch (e) { ko(e); } });
+  const idbDo = (mode, fn) => idb().then(db => new Promise((ok, ko) => { const tx = db.transaction("k", mode); const req = fn(tx.objectStore("k")); tx.oncomplete = () => { db.close(); ok(req && req.result); }; tx.onerror = () => { db.close(); ko(tx.error); }; }));
+  const rememberKey = k => idbDo("readwrite", st => st.put(k, "master")).catch(() => {});
+  const forgetKey = () => idbDo("readwrite", st => st.delete("master")).catch(() => {});
+  async function restoreKey() {
+    if (!hasCrypto() || !window.indexedDB) return;
+    try {
+      const k = await idbDo("readonly", st => st.get("master")); if (!k || V.key) return;
+      V.key = k; const m = await vaultMeta();
+      V.index = JSON.parse(td.decode(await vaultFile(m.index)));
+      if (curTab === "viaje") route();
+    } catch (e) { if (!V.index) V.key = null; }
   }
   async function vaultFile(id) {
     const r = await fetch(`vault/${id}.txt`).catch(() => null);
@@ -2704,11 +2719,8 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     const raw = await openBox(await prfKey(await prfEval(ub64(L.face.id), ub64(L.face.salt))), ub64(L.face.box), "faceid");
     await setMaster(raw); return true;
   }
-  const lockVault = () => { V.key = null; V.index = null; };
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) V.hiddenAt = Date.now();
-    else if (V.key && V.hiddenAt && Date.now() - V.hiddenAt > 5 * 60 * 1000) { lockVault(); if (curTab === "viaje") route(); }
-  });
+  const lockVault = () => { V.key = null; V.index = null; forgetKey(); };
+  /* Queda desbloqueado en este celular hasta que se toque "Bloquear" */
 
   /* Botón de cada documento */
   const docBtn = (slot, label) => DOC_SLOTS[slot] ? `<button type="button" class="btn btn-doc" data-doc="${esc(slot)}">${I(V.key ? "ticket" : "lock")}${esc(label || "Ver " + DOC_SLOTS[slot].toLowerCase())}</button>` : "";
@@ -2718,7 +2730,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     $$("[data-vault-open]", root).forEach(b => b.addEventListener("click", () => askUnlock(() => route())));
   }
   const lockedCard = () => V.key
-    ? `<div class="vault-card open">${I("check")}<div><b>Documentos desbloqueados</b><p>Se bloquean solos si salís de la app más de 5 minutos.</p></div><button type="button" class="btn btn-soft" data-vault-lock>Bloquear</button></div>`
+    ? `<div class="vault-card open">${I("check")}<div><b>Documentos desbloqueados</b><p>Quedan abiertos en este celular. Si se lo prestás a alguien, tocá Bloquear.</p></div><button type="button" class="btn btn-soft" data-vault-lock>Bloquear</button></div>`
     : `<div class="vault-card">${I("lock")}<div><b>Vouchers protegidos</b><p>Los pasajes, vouchers y códigos QR están cifrados. Se ven con Face ID, el PIN o la contraseña.</p></div><button type="button" class="btn btn-primary" data-vault-open>Desbloquear</button></div>`;
 
   /* Desbloqueo */
@@ -2896,6 +2908,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
+  restoreKey();
   route();
 })();
 
