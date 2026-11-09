@@ -1,0 +1,507 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Facu en Europa//Avisos//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Facu en Europa
+X-WR-TIMEZONE:Europe/Madrid
+BEGIN:VEVENT
+UID:leg0@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261111T151500Z
+DTEND:20261112T031000Z
+SUMMARY:✈️ UX 042 Buenos Aires (EZE) → Madrid
+LOCATION:Aeropuerto de Ezeiza
+DESCRIPTION:Air Europa UX 042\, Boeing 787-9 con comida. Llega el jueves 
+ 12 a Madrid-Barajas\, Terminal 1 (hora de España).\nEstar en Aeropuerto
+  de Ezeiza a las 08:15 (hora Argentina). Air Europa recomienda llegar 4 
+ horas antes en vuelos fuera de Europa.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Buenos Aires (EZE) → Madrid. Vuelo UX 042 · sale 
+ 12:15 de Aeropuerto de Ezeiza. Estar en Aeropuerto de Ezeiza a las 08:15
+ .
+TRIGGER;VALUE=DATE-TIME:20261110T230000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Buenos Aires (EZE) → Madrid a las 12:15. Salí para Ae
+ ropuerto de Ezeiza: tenés que estar a las 08:15.
+TRIGGER;VALUE=DATE-TIME:20261111T101500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg0-ci@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261110T092500Z
+DTEND:20261110T095500Z
+SUMMARY:Check-in habilitado · UX 042
+DESCRIPTION:Air Europa habilita el check-in online 48 horas antes. Como l
+ a reserva tiene conexión en Madrid\, se abre cuando faltan menos de 48 
+ horas para el último vuelo (UX 1153). Sirve para los dos tramos.\nhttps
+ ://www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html
+URL:https://www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-in habilitado · UX 042
+TRIGGER;VALUE=DATE-TIME:20261110T092500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg1@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261112T092500Z
+DTEND:20261112T104500Z
+SUMMARY:✈️ UX 1153 Madrid → Lisboa
+LOCATION:Madrid-Barajas\, Terminal 2
+DESCRIPTION:Air Europa UX 1153\, misma reserva. Llegás a Madrid a las 04
+ :10 a la Terminal 1 y este vuelo sale de la Terminal 2. Llega a Lisboa\,
+  Terminal 1\, a las 10:45 (hora de Portugal\, una hora menos que España
+ ).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Conexión: UX 1153 a las 10:25. Sale de Madrid-Barajas\, Term
+ inal 2.
+TRIGGER;VALUE=DATE-TIME:20261112T065500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg2@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261115T093900Z
+DTEND:20261115T124300Z
+SUMMARY:🚆 Intercidades 721 Lisboa → Oporto
+LOCATION:Lisboa Oriente
+DESCRIPTION:Intercidades 721. Sale de Lisboa Oriente (no de Santa Apolón
+ ia) y llega a Porto Campanhã.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Lisboa → Oporto. Tren Intercidades 721 · sale 09:
+ 39 de Lisboa Oriente.
+TRIGGER;VALUE=DATE-TIME:20261114T200000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Lisboa → Oporto a las 09:39. Sale de Lisboa Oriente.
+TRIGGER;VALUE=DATE-TIME:20261115T080900Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg3@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261118T122500Z
+DTEND:20261118T134500Z
+SUMMARY:✈️ IB 546 Oporto → Madrid
+LOCATION:Aeropuerto de Oporto
+DESCRIPTION:Iberia IB 546\, llega a Madrid Barajas Terminal 4. La llegada
+  es en hora de España (una hora más que Portugal). Una valija despacha
+ da incluida. Llegá al aeropuerto dos horas antes.\nEstar en Aeropuerto 
+ de Oporto a las 10:25 (hora de Portugal).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Oporto → Madrid. Vuelo IB 546 · sale 12:25 de Aer
+ opuerto de Oporto. Estar en Aeropuerto de Oporto a las 10:25.
+TRIGGER;VALUE=DATE-TIME:20261117T200000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Oporto → Madrid a las 12:25. Salí para Aeropuerto de 
+ Oporto: tenés que estar a las 10:25.
+TRIGGER;VALUE=DATE-TIME:20261118T092500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg3-ci@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261117T122500Z
+DTEND:20261117T125500Z
+SUMMARY:Check-in habilitado · IB 546
+DESCRIPTION:Iberia habilita el check-in online\, como tarde\, 24 horas an
+ tes en las reservas hechas por agencia.\nhttps://www.iberia.com/ar/check
+ in-information/
+URL:https://www.iberia.com/ar/checkin-information/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-in habilitado · IB 546
+TRIGGER;VALUE=DATE-TIME:20261117T122500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg4@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261121T083500Z
+DTEND:20261121T102400Z
+SUMMARY:🚆 AVE 02092 Madrid → Córdoba
+LOCATION:Madrid Puerta de Atocha
+DESCRIPTION:AVE 02092\, sale de Madrid Puerta de Atocha. Dejá la valija 
+ en la consigna de la estación de Córdoba.\nRenfe cierra el acceso al t
+ ren 2 minutos antes de la salida y antes hay control de equipaje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Madrid → Córdoba. Tren AVE 02092 · sale 09:35 de
+  Madrid Puerta de Atocha. Renfe cierra el acceso al tren 2 minutos antes
+  de la salida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261120T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Madrid → Córdoba a las 09:35. Sale de Madrid Puerta d
+ e Atocha. Renfe cierra el acceso al tren 2 minutos antes de la salida y 
+ antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261121T070500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg5@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261121T175400Z
+DTEND:20261121T193500Z
+SUMMARY:🚆 Media Distancia 35035 Córdoba → Sevilla
+LOCATION:Estación de Córdoba
+DESCRIPTION:Media Distancia 35035\, llega a Sevilla Santa Justa.\nEstar e
+ n Estación de Córdoba a las 18:30 (hora de España).\nRenfe cierra el 
+ acceso al tren 2 minutos antes de la salida y antes hay control de equip
+ aje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Córdoba → Sevilla. Tren Media Distancia 35035 · 
+ sale 18:54 de Estación de Córdoba. Estar en Estación de Córdoba a la
+ s 18:30.
+TRIGGER;VALUE=DATE-TIME:20261120T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Córdoba → Sevilla a las 18:54. Salí para Estación d
+ e Córdoba: tenés que estar a las 18:30.
+TRIGGER;VALUE=DATE-TIME:20261121T163000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg6@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261125T065100Z
+DTEND:20261125T090200Z
+SUMMARY:🚆 Avant 08085 Sevilla → Málaga
+LOCATION:Sevilla Santa Justa
+DESCRIPTION:Avant 08085\, de Sevilla Santa Justa a Málaga María Zambran
+ o.\nRenfe cierra el acceso al tren 2 minutos antes de la salida y antes 
+ hay control de equipaje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Sevilla → Málaga. Tren Avant 08085 · sale 07:51 
+ de Sevilla Santa Justa. Renfe cierra el acceso al tren 2 minutos antes d
+ e la salida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261124T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Sevilla → Málaga a las 07:51. Sale de Sevilla Santa J
+ usta. Renfe cierra el acceso al tren 2 minutos antes de la salida y ante
+ s hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261125T052100Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg7@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261125T152200Z
+DTEND:20261125T173000Z
+SUMMARY:🚆 Avant 08764 Málaga → Sevilla
+LOCATION:Málaga María Zambrano
+DESCRIPTION:Avant 08764\, desde Málaga María Zambrano.\nRenfe cierra el
+  acceso al tren 2 minutos antes de la salida y antes hay control de equi
+ paje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Málaga → Sevilla. Tren Avant 08764 · sale 16:22 
+ de Málaga María Zambrano. Renfe cierra el acceso al tren 2 minutos ant
+ es de la salida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261124T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Málaga → Sevilla a las 16:22. Sale de Málaga María 
+ Zambrano. Renfe cierra el acceso al tren 2 minutos antes de la salida y 
+ antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261125T135200Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg8@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261126T154400Z
+DTEND:20261126T200600Z
+SUMMARY:🚆 AVE 03981 Sevilla → Valencia
+LOCATION:Sevilla Santa Justa
+DESCRIPTION:AVE 03981\, llega a Valencia Joaquín Sorolla.\nRenfe cierra 
+ el acceso al tren 2 minutos antes de la salida y antes hay control de eq
+ uipaje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Sevilla → Valencia. Tren AVE 03981 · sale 16:44 d
+ e Sevilla Santa Justa. Renfe cierra el acceso al tren 2 minutos antes de
+  la salida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261125T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Sevilla → Valencia a las 16:44. Sale de Sevilla Santa 
+ Justa. Renfe cierra el acceso al tren 2 minutos antes de la salida y ant
+ es hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261126T141400Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg9@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261128T102500Z
+DTEND:20261128T135000Z
+SUMMARY:🚆 Euromed 01112 Valencia → Barcelona
+LOCATION:Valencia Estació del Nord
+DESCRIPTION:Euromed 01112. Ojo: sale de Valencia Estació del Nord (no de
+  Joaquín Sorolla) y llega a Barcelona Sants. Cierran el acceso al tren 
+ 2 minutos antes.\nRenfe cierra el acceso al tren 2 minutos antes de la s
+ alida y antes hay control de equipaje.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Valencia → Barcelona. Tren Euromed 01112 · sale 1
+ 1:25 de Valencia Estació del Nord. Renfe cierra el acceso al tren 2 min
+ utos antes de la salida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261127T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Valencia → Barcelona a las 11:25. Sale de Valencia Est
+ ació del Nord. Renfe cierra el acceso al tren 2 minutos antes de la sal
+ ida y antes hay control de equipaje.
+TRIGGER;VALUE=DATE-TIME:20261128T085500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg10@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261202T193000Z
+DTEND:20261202T210000Z
+SUMMARY:✈️ UX 7708 Barcelona → Madrid
+LOCATION:Aeropuerto de Barcelona-El Prat\, Terminal 1
+DESCRIPTION:Air Europa UX 7708. Llega a Madrid-Barajas\, Terminal 2.\nEst
+ ar en Aeropuerto de Barcelona-El Prat\, Terminal 1 a las 18:00 (hora de 
+ España). Air Europa recomienda llegar 2 horas y media antes en vuelos d
+ entro de Europa.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Barcelona → Madrid. Vuelo UX 7708 · sale 20:30 de
+  Aeropuerto de Barcelona-El Prat\, Terminal 1. Estar en Aeropuerto de Ba
+ rcelona-El Prat\, Terminal 1 a las 18:00.
+TRIGGER;VALUE=DATE-TIME:20261201T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Barcelona → Madrid a las 20:30. Salí para Aeropuerto 
+ de Barcelona-El Prat\, Terminal 1: tenés que estar a las 18:00.
+TRIGGER;VALUE=DATE-TIME:20261202T160000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg10-ci@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261130T225500Z
+DTEND:20261130T232500Z
+SUMMARY:Check-in habilitado · UX 7708
+DESCRIPTION:Air Europa habilita el check-in online 48 horas antes. Como l
+ a reserva tiene conexión en Madrid\, se abre cuando faltan menos de 48 
+ horas para el último vuelo (UX 041). Sirve para los dos tramos.\nhttps:
+ //www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html
+URL:https://www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Check-in habilitado · UX 7708
+TRIGGER;VALUE=DATE-TIME:20261130T225500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:leg11@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261202T225500Z
+DTEND:20261203T115000Z
+SUMMARY:✈️ UX 041 Madrid → Buenos Aires (EZE)
+LOCATION:Madrid-Barajas\, Terminal 1
+DESCRIPTION:Air Europa UX 041\, misma reserva\, Boeing 787-9 con comida. 
+ Llegás de Barcelona a la Terminal 2 y este vuelo sale de la Terminal 1:
+  tenés 1 hora 55 minutos para cambiar. Llega a Ezeiza el jueves 3 a las
+  08:50.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Conexión: UX 041 a las 23:55. Sale de Madrid-Barajas\, Termi
+ nal 1.
+TRIGGER;VALUE=DATE-TIME:20261202T202500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:act0@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261123T080000Z
+DTEND:20261123T090000Z
+SUMMARY:🎟️ Excursión a Ronda y pueblos blancos
+LOCATION:Calle Trajano 6\, Sevilla
+DESCRIPTION:Punto de encuentro: Calle Trajano 6\, Sevilla\, a las 9:00. L
+ legá 15 minutos antes. Vuelve al mismo lugar.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Excursión a Ronda y pueblos blancos. Calle Trajano 
+ 6\, Sevilla\, a las 09:00. Llegá a las 08:45.
+TRIGGER;VALUE=DATE-TIME:20261122T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Excursión a Ronda y pueblos blancos a las 09:00. Calle 
+ Trajano 6\, Sevilla. Llegá a las 08:45.
+TRIGGER;VALUE=DATE-TIME:20261123T064500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:act1@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261124T072000Z
+DTEND:20261124T082000Z
+SUMMARY:🎟️ Alhambra y Palacios Nazaríes
+LOCATION:Calle Zaragoza 1\, Sevilla
+DESCRIPTION:Punto de encuentro: Calle Zaragoza 1\, Sevilla\, a las 8:20 (
+ sale 8:30). Llevá el pasaporte: sin documento no entrás a la Alhambra.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Alhambra y Palacios Nazaríes. Calle Zaragoza 1\, Se
+ villa\, a las 08:20. Llevá el pasaporte.
+TRIGGER;VALUE=DATE-TIME:20261123T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Alhambra y Palacios Nazaríes a las 08:20. Calle Zaragoz
+ a 1\, Sevilla. Llevá el pasaporte.
+TRIGGER;VALUE=DATE-TIME:20261124T062000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:act2@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261130T094500Z
+DTEND:20261130T104500Z
+SUMMARY:🎟️ Entrada a la Sagrada Família con audioguía
+LOCATION:Sagrada Família\, entrada por carrer de la Marina
+DESCRIPTION:Entrada a las 10:45 por carrer de la Marina. Llevá el pasapo
+ rte. La audioguía se baja en la app oficial de la Sagrada Família.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana: Entrada a la Sagrada Família con audioguía. Sagrad
+ a Família\, entrada por carrer de la Marina\, a las 10:45. Llevá el pa
+ saporte y bajá antes la app oficial para la audioguía.
+TRIGGER;VALUE=DATE-TIME:20261129T190000Z
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy: Entrada a la Sagrada Família con audioguía a las 10:45
+ . Sagrada Família\, entrada por carrer de la Marina. Llevá el pasaport
+ e y bajá antes la app oficial para la audioguía.
+TRIGGER;VALUE=DATE-TIME:20261130T084500Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:vila-garden@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261109T150000Z
+DTEND:20261109T153000Z
+SUMMARY:Avisale a Vila Garden a qué hora llegás
+DESCRIPTION:La recepción tiene horario limitado: escribí a vilagarden@v
+ ilaguesthouses.com o llamá al +351 21 813 8060 al menos 48 horas antes 
+ de llegar (antes del 10 nov\, 07:45 hora Argentina).
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Avisale a Vila Garden a qué hora llegás
+TRIGGER;VALUE=DATE-TIME:20261109T150000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-lisboa@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261115T080000Z
+DTEND:20261115T083000Z
+SUMMARY:Hoy dejás Vila Garden Guesthouse
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Vila Garden Guesthouse
+TRIGGER;VALUE=DATE-TIME:20261115T080000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-oporto@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261118T080000Z
+DTEND:20261118T083000Z
+SUMMARY:Hoy dejás Moov Hotel Porto Centro
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Moov Hotel Porto Centro
+TRIGGER;VALUE=DATE-TIME:20261118T080000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-madrid@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261121T070000Z
+DTEND:20261121T073000Z
+SUMMARY:Hoy dejás Hostal Lauria
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Hostal Lauria
+TRIGGER;VALUE=DATE-TIME:20261121T070000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-sevilla@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261126T070000Z
+DTEND:20261126T073000Z
+SUMMARY:Hoy dejás Basic Hotel Sevilla Catedral
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Basic Hotel Sevilla Catedral
+TRIGGER;VALUE=DATE-TIME:20261126T070000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-valencia@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261128T070000Z
+DTEND:20261128T073000Z
+SUMMARY:Hoy dejás Casa Clarita
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Casa Clarita
+TRIGGER;VALUE=DATE-TIME:20261128T070000Z
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:out-barcelona@facu-en-europa
+DTSTAMP:20261109T120000Z
+DTSTART:20261202T070000Z
+DTEND:20261202T073000Z
+SUMMARY:Hoy dejás Hostal Opera Ramblas
+DESCRIPTION:Check-out hasta las 12:00. Revisá que no quede nada en la ha
+ bitación.
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Hoy dejás Hostal Opera Ramblas
+TRIGGER;VALUE=DATE-TIME:20261202T070000Z
+END:VALARM
+END:VEVENT
+END:VCALENDAR

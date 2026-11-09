@@ -698,6 +698,37 @@ details.more[open] summary::after { content: " –"; }
 .doc-ph span { color: #586174; font-size: 14px; padding: 16px; text-align: center; }
 .doc-ph img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .doc-pages figcaption { font-size: 13px; color: var(--muted); }
+
+/* Avisos */
+.rems { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.rem { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+.rem.urgent { border-color: var(--wine); }
+.rem.past { opacity: .55; }
+.rem-ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--tone); color: var(--wine); }
+.rem.urgent .rem-ic { background: var(--wine); color: var(--on-wine); }
+.rem-b { display: grid; gap: 4px; min-width: 0; }
+.rem-b b { font-size: 16.5px; line-height: 1.25; }
+.rem-b p { font-size: 14.5px; color: var(--muted); line-height: 1.4; }
+.rem-b .rem-when { font-size: 12.5px; font-weight: 750; letter-spacing: .04em; text-transform: uppercase; color: var(--wine); }
+.rem-act { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.rem-act:empty { display: none; }
+.rem-act .btn { min-height: 40px; padding: 0 16px; font-size: 14.5px; }
+.alerts .rems { gap: 8px; }
+.tk-tip { font-size: 14.5px; color: var(--ink); line-height: 1.4; }
+.tk-tip span { color: var(--muted); }
+.ci { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.ci .btn { min-height: 44px; }
+.ci-chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-size: 13.5px; font-weight: 700; background: color-mix(in srgb, var(--olive) 14%, var(--card)); color: var(--olive); }
+.ci-chip.soon { background: var(--tone); color: var(--ink); font-weight: 600; }
+.pnr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; background: var(--tone); border-radius: 14px; padding: 10px 12px; }
+.pnr small { display: block; font-size: 12px; color: var(--muted); font-weight: 600; }
+.pnr b { font-size: 18px; letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+.pnr label { font-size: 14px; font-weight: 700; width: 100%; }
+.pnr .btn { min-height: 38px; padding: 0 14px; font-size: 14px; }
+.pnr-in { display: flex; gap: 8px; width: 100%; }
+.pnr-in input { flex: 1; min-width: 0; min-height: 40px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); font: 600 16px var(--body); padding: 0 12px; text-transform: uppercase; letter-spacing: .08em; }
+.cal-card { gap: 12px; }
+@media (min-width: 900px) { .home-body > .alerts { grid-column: 1 / -1; } }
 </style>
 </head>
 <body>
@@ -1726,16 +1757,18 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
 
   /* ================= INICIO ================= */
   const LEGS = [
-    { d: "2026-11-11", mode: "Vuelo", route: "Buenos Aires (EZE) → Lisboa", dep: "", arr: "10:45", note: "Llega el jueves 12. Horario de salida en el pasaje de la agencia." },
-    { d: "2026-11-15", mode: "Tren", route: "Lisboa → Oporto", dep: "09:39", arr: "12:43", note: "Intercidades 721. Sale de Lisboa Oriente (no de Santa Apolónia) y llega a Porto Campanhã." },
-    { d: "2026-11-18", mode: "Vuelo", route: "Oporto → Madrid", dep: "12:25", arr: "14:45", note: "Iberia IB 546, llega a Madrid Barajas Terminal 4. La llegada es en hora de España (una hora más que Portugal). Una valija despachada incluida. Llegá al aeropuerto dos horas antes." },
-    { d: "2026-11-21", mode: "Tren", route: "Madrid → Córdoba", dep: "09:35", arr: "11:24", note: "AVE 02092, sale de Madrid Puerta de Atocha. Dejá la valija en la consigna de la estación de Córdoba." },
-    { d: "2026-11-21", mode: "Tren", route: "Córdoba → Sevilla", dep: "18:54", arr: "20:35", note: "Media Distancia 35035, llega a Sevilla Santa Justa." },
-    { d: "2026-11-25", mode: "Tren", route: "Sevilla → Málaga", dep: "07:51", arr: "10:02", note: "Avant 08085, de Sevilla Santa Justa a Málaga María Zambrano." },
-    { d: "2026-11-25", mode: "Tren", route: "Málaga → Sevilla", dep: "16:22", arr: "18:30", note: "Avant 08764, desde Málaga María Zambrano." },
-    { d: "2026-11-26", mode: "Tren", route: "Sevilla → Valencia", dep: "16:44", arr: "21:06", note: "AVE 03981, llega a Valencia Joaquín Sorolla." },
-    { d: "2026-11-28", mode: "Tren", route: "Valencia → Barcelona", dep: "11:25", arr: "14:50", note: "Euromed 01112. Ojo: sale de Valencia Estació del Nord (no de Joaquín Sorolla) y llega a Barcelona Sants. Cierran el acceso al tren 2 minutos antes." },
-    { d: "2026-12-02", mode: "Vuelo", route: "Barcelona → Buenos Aires (EZE)", dep: "", arr: "", note: "Horario en el pasaje de la agencia. Estate en el aeropuerto tres horas antes." }
+    { d: "2026-11-11", mode: "Vuelo", code: "UX 042", air: "ae", route: "Buenos Aires (EZE) → Madrid", dep: "12:15", arr: "04:10", arrD: "2026-11-12", tz: "-03:00", arrTz: "+01:00", from: "Aeropuerto de Ezeiza", note: "Air Europa UX 042, Boeing 787-9 con comida. Llega el jueves 12 a Madrid-Barajas, Terminal 1 (hora de España).", arrive: { min: 240, src: "Air Europa recomienda llegar 4 horas antes en vuelos fuera de Europa." }, checkin: { opens: "2026-11-10T10:25:00+01:00", url: "https://www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html", text: "Air Europa habilita el check-in online 48 horas antes. Como la reserva tiene conexión en Madrid, se abre cuando faltan menos de 48 horas para el último vuelo (UX 1153). Sirve para los dos tramos." } },
+    { d: "2026-11-12", mode: "Vuelo", code: "UX 1153", air: "ae", conn: true, route: "Madrid → Lisboa", dep: "10:25", arr: "10:45", tz: "+01:00", arrTz: "+00:00", from: "Madrid-Barajas, Terminal 2", note: "Air Europa UX 1153, misma reserva. Llegás a Madrid a las 04:10 a la Terminal 1 y este vuelo sale de la Terminal 2. Llega a Lisboa, Terminal 1, a las 10:45 (hora de Portugal, una hora menos que España)." },
+    { d: "2026-11-15", mode: "Tren", code: "Intercidades 721", route: "Lisboa → Oporto", dep: "09:39", arr: "12:43", tz: "+00:00", from: "Lisboa Oriente", note: "Intercidades 721. Sale de Lisboa Oriente (no de Santa Apolónia) y llega a Porto Campanhã." },
+    { d: "2026-11-18", mode: "Vuelo", code: "IB 546", air: "ib", route: "Oporto → Madrid", dep: "12:25", arr: "14:45", tz: "+00:00", arrTz: "+01:00", from: "Aeropuerto de Oporto", arrive: { min: 120 }, checkin: { opens: "2026-11-17T12:25:00+00:00", url: "https://www.iberia.com/ar/checkin-information/", text: "Iberia habilita el check-in online, como tarde, 24 horas antes en las reservas hechas por agencia." }, note: "Iberia IB 546, llega a Madrid Barajas Terminal 4. La llegada es en hora de España (una hora más que Portugal). Una valija despachada incluida. Llegá al aeropuerto dos horas antes." },
+    { d: "2026-11-21", mode: "Tren", code: "AVE 02092", route: "Madrid → Córdoba", dep: "09:35", arr: "11:24", tz: "+01:00", from: "Madrid Puerta de Atocha", rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "AVE 02092, sale de Madrid Puerta de Atocha. Dejá la valija en la consigna de la estación de Córdoba." },
+    { d: "2026-11-21", mode: "Tren", code: "Media Distancia 35035", route: "Córdoba → Sevilla", dep: "18:54", arr: "20:35", tz: "+01:00", from: "Estación de Córdoba", arrive: { by: "18:30" }, rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "Media Distancia 35035, llega a Sevilla Santa Justa." },
+    { d: "2026-11-25", mode: "Tren", code: "Avant 08085", route: "Sevilla → Málaga", dep: "07:51", arr: "10:02", tz: "+01:00", from: "Sevilla Santa Justa", rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "Avant 08085, de Sevilla Santa Justa a Málaga María Zambrano." },
+    { d: "2026-11-25", mode: "Tren", code: "Avant 08764", route: "Málaga → Sevilla", dep: "16:22", arr: "18:30", tz: "+01:00", from: "Málaga María Zambrano", rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "Avant 08764, desde Málaga María Zambrano." },
+    { d: "2026-11-26", mode: "Tren", code: "AVE 03981", route: "Sevilla → Valencia", dep: "16:44", arr: "21:06", tz: "+01:00", from: "Sevilla Santa Justa", rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "AVE 03981, llega a Valencia Joaquín Sorolla." },
+    { d: "2026-11-28", mode: "Tren", code: "Euromed 01112", route: "Valencia → Barcelona", dep: "11:25", arr: "14:50", tz: "+01:00", from: "Valencia Estació del Nord", rule: "Renfe cierra el acceso al tren 2 minutos antes de la salida y antes hay control de equipaje.",  note: "Euromed 01112. Ojo: sale de Valencia Estació del Nord (no de Joaquín Sorolla) y llega a Barcelona Sants. Cierran el acceso al tren 2 minutos antes." },
+    { d: "2026-12-02", mode: "Vuelo", code: "UX 7708", air: "ae", route: "Barcelona → Madrid", dep: "20:30", arr: "22:00", tz: "+01:00", arrTz: "+01:00", from: "Aeropuerto de Barcelona-El Prat, Terminal 1", note: "Air Europa UX 7708. Llega a Madrid-Barajas, Terminal 2.", arrive: { min: 150, src: "Air Europa recomienda llegar 2 horas y media antes en vuelos dentro de Europa." }, checkin: { opens: "2026-11-30T23:55:00+01:00", url: "https://www.aireuropa.com/us/en/aea/manage-your-booking/check-in.html", text: "Air Europa habilita el check-in online 48 horas antes. Como la reserva tiene conexión en Madrid, se abre cuando faltan menos de 48 horas para el último vuelo (UX 041). Sirve para los dos tramos." } },
+    { d: "2026-12-02", mode: "Vuelo", code: "UX 041", air: "ae", conn: true, route: "Madrid → Buenos Aires (EZE)", dep: "23:55", arr: "08:50", arrD: "2026-12-03", tz: "+01:00", arrTz: "-03:00", from: "Madrid-Barajas, Terminal 1", note: "Air Europa UX 041, misma reserva, Boeing 787-9 con comida. Llegás de Barcelona a la Terminal 2 y este vuelo sale de la Terminal 1: tenés 1 hora 55 minutos para cambiar. Llega a Ezeiza el jueves 3 a las 08:50." }
   ];
   const BOOK = [
     { d: "2026-11-13", name: "Mosteiro dos Jerónimos y Torre de Belém", city: "Lisboa", must: false, note: "Se entra por turnos con horario. Comprá online o en la boletería de los Jerónimos.", go: "#lisboa-d2" },
@@ -1756,16 +1789,16 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     { d: "2026-11-30", name: "Sagrada Família con audioguía" }
   ];
   const ACTS = [
-    { d: "2026-11-23", name: "Excursión a Ronda y pueblos blancos", from: "Punto de encuentro: Calle Trajano 6, Sevilla, a las 9:00. Llegá 15 minutos antes. Vuelve al mismo lugar.", go: "#ronda", slot: "act:ronda" },
-    { d: "2026-11-24", name: "Alhambra y Palacios Nazaríes", from: "Punto de encuentro: Calle Zaragoza 1, Sevilla, a las 8:20 (sale 8:30). Llevá el pasaporte: sin documento no entrás a la Alhambra.", go: "#granada", slot: "act:alhambra" },
-    { d: "2026-11-30", name: "Entrada a la Sagrada Família con audioguía", from: "Entrada a las 10:45 por carrer de la Marina. Llevá el pasaporte. La audioguía se baja en la app oficial de la Sagrada Família.", go: "#barcelona-d2", slot: "act:sagrada" }
+    { d: "2026-11-23", name: "Excursión a Ronda y pueblos blancos", from: "Punto de encuentro: Calle Trajano 6, Sevilla, a las 9:00. Llegá 15 minutos antes. Vuelve al mismo lugar.", go: "#ronda", slot: "act:ronda", meet: "09:00", by: "08:45", tz: "+01:00", place: "Calle Trajano 6, Sevilla" },
+    { d: "2026-11-24", name: "Alhambra y Palacios Nazaríes", from: "Punto de encuentro: Calle Zaragoza 1, Sevilla, a las 8:20 (sale 8:30). Llevá el pasaporte: sin documento no entrás a la Alhambra.", go: "#granada", slot: "act:alhambra", meet: "08:20", tz: "+01:00", place: "Calle Zaragoza 1, Sevilla", bring: "Llevá el pasaporte." },
+    { d: "2026-11-30", name: "Entrada a la Sagrada Família con audioguía", from: "Entrada a las 10:45 por carrer de la Marina. Llevá el pasaporte. La audioguía se baja en la app oficial de la Sagrada Família.", go: "#barcelona-d2", slot: "act:sagrada", meet: "10:45", tz: "+01:00", place: "Sagrada Família, entrada por carrer de la Marina", bring: "Llevá el pasaporte y bajá antes la app oficial para la audioguía." }
   ];
   const HOTELS = [
     { c: "lisboa", when: "12 al 15 nov · 3 noches" }, { c: "oporto", when: "15 al 18 nov · 3 noches" }, { c: "madrid", when: "18 al 21 nov · 3 noches" },
     { c: "sevilla", when: "21 al 26 nov · 5 noches" }, { c: "valencia", when: "26 al 28 nov · 2 noches" }, { c: "barcelona", when: "28 nov al 2 dic · 4 noches" }
   ];
   const STATIONS = [
-    { c: "lisboa", short: "12 al 15 nov · 3 noches", how: "Llega en avión desde Ezeiza a las 10:45. Incluye Sintra." },
+    { c: "lisboa", short: "12 al 15 nov · 3 noches", how: "Vuela desde Ezeiza con escala en Madrid y llega a las 10:45. Incluye Sintra." },
     { c: "oporto", short: "15 al 18 nov · 3 noches", how: "Tren desde Lisboa, 09:39 a 12:43." },
     { c: "madrid", short: "18 al 21 nov · 3 noches", how: "Vuelo desde Oporto, 12:25 a 14:45." },
     { c: "sevilla", short: "21 al 26 nov · 5 noches", how: "Tren desde Madrid a las 09:35, con el día en Córdoba. Excursiones a Ronda, Granada y Málaga." },
@@ -1842,6 +1875,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     </header>
     <div class="wrap home-body">
       ${window.__PWA ? '<section id="offline-card" class="offline-card" hidden></section>' : `<a class="offline-card app-link" href="https://valengirardi.github.io/facu-europa/" target="_blank" rel="noopener"><div class="oc-row"><span class="oc-ic">${I("bag")}</span><div><b>Instalá la app para usarla sin conexión</b><p>Abrí este enlace en Safari, tocá Compartir → Agregar a inicio y, desde la app, Descargar todo.</p></div></div></a>`}
+      ${homeAlertsHTML()}
       ${todayHTML}
       ${nl ? `<section><div class="sec-title"><h2>Próximo traslado</h2><a href="#viaje-pasajes">Todos</a></div>${nl}</section>` : ""}
       <section id="inicio-ciudades">
@@ -1867,6 +1901,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
       ${footHTML()}
     </div>`;
     drawRoute();
+    bindRems(view);
     if (window.__PWA) setupOffline();
     bindOpeners(view);
     $$("[data-mapday]", view).forEach(a => a.addEventListener("click", () => { pendingMapDay = a.dataset.mapday; }));
@@ -2521,20 +2556,223 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
       <p style="color:var(--muted);font-size:14px">Bajá también la app de Coris: tiene el voucher y la asistencia en el celular.</p>`;
   }
 
+  /* ================= AVISOS Y RECORDATORIOS ================= */
+  /* Todo sale de los vouchers y de las reglas oficiales de cada empresa. Las horas se guardan con su zona horaria. */
+  const tzMin = tz => { const m = /([+-])(\d\d):(\d\d)/.exec(tz || "+00:00"); return (m[1] === "-" ? -1 : 1) * (+m[2] * 60 + +m[3]); };
+  const at = (d, t, tz) => new Date(`${d}T${t}:00${tz}`);
+  const inTz = (date, tz) => new Date(date.getTime() + tzMin(tz) * 60000);
+  const hhmm = (date, tz) => { const x = inTz(date, tz); return String(x.getUTCHours()).padStart(2, "0") + ":" + String(x.getUTCMinutes()).padStart(2, "0"); };
+  const dayTxt = (date, tz) => { const x = inTz(date, tz); return `${WD[x.getUTCDay()]} ${x.getUTCDate()} ${MO[x.getUTCMonth()]}`; };
+  const isoDay = (date, tz) => inTz(date, tz).toISOString().slice(0, 10);
+  const prevDay = d => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() - 1); return x.toISOString().slice(0, 10); };
+  const addDays = (d, n) => { const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + n); return x.toISOString().slice(0, 10); };
+  const TZ_NAME = { "-03:00": "hora Argentina", "+00:00": "hora de Portugal", "+01:00": "hora de España" };
+  const legDep = l => at(l.d, l.dep, l.tz);
+  const legArriveBy = l => !l.arrive ? null : l.arrive.by ? at(l.d, l.arrive.by, l.tz) : new Date(legDep(l) - l.arrive.min * 60000);
+  const checkinState = (l, now = nowDate()) => {
+    if (!l.checkin) return null;
+    const opens = new Date(l.checkin.opens), dep = legDep(l);
+    if (now >= dep) return { st: "past", opens };
+    return { st: now >= opens ? "open" : "soon", opens };
+  };
+  const CHECKOUT = [["lisboa", "2026-11-15", "+00:00"], ["oporto", "2026-11-18", "+00:00"], ["madrid", "2026-11-21", "+01:00"], ["sevilla", "2026-11-26", "+01:00"], ["valencia", "2026-11-28", "+01:00"], ["barcelona", "2026-12-02", "+01:00"]];
+
+  /* Avisos fijos (van también al calendario) */
+  function fixedReminders() {
+    const out = [];
+    LEGS.forEach((l, i) => {
+      if (!l.dep || !l.tz) return;
+      const dep = legDep(l), by = legArriveBy(l), icon = l.mode === "Vuelo" ? "plane" : "train";
+      const what = `${l.mode === "Vuelo" ? "Vuelo" : "Tren"} ${l.code || ""}`.trim();
+      const howTo = by ? `Estar en ${l.from} a las ${hhmm(by, l.tz)}.` : l.rule || "";
+      if (!l.conn) {
+        out.push({ id: `leg${i}-eve`, icon, at: at(prevDay(l.d), "20:00", l.tz), until: at(l.d, "00:00", l.tz), tz: l.tz, event: dep, go: "#viaje-pasajes",
+          title: `Mañana: ${l.route}`, text: `${what} · sale ${l.dep} de ${l.from}. ${howTo}`.trim() });
+        out.push({ id: `leg${i}-go`, icon, at: new Date((by || dep) - (by ? 60 : 90) * 60000), until: dep, tz: l.tz, event: dep, go: "#viaje-pasajes", urgent: true,
+          title: `Hoy: ${l.route} a las ${l.dep}`, text: by ? `Salí para ${l.from}: tenés que estar a las ${hhmm(by, l.tz)}.` : `Sale de ${l.from}. ${l.rule || ""}`.trim() });
+      } else {
+        out.push({ id: `leg${i}-conn`, icon, at: new Date(dep - 150 * 60000), until: dep, tz: l.tz, event: dep, go: "#viaje-pasajes",
+          title: `Conexión: ${l.code} a las ${l.dep}`, text: `Sale de ${l.from}.` });
+      }
+      if (l.checkin) {
+        const op = new Date(l.checkin.opens);
+        out.push({ id: `leg${i}-ci`, icon: "check", at: op, until: new Date(dep - 60 * 60000), tz: l.tz, event: op, go: "#viaje-pasajes", checkin: i,
+          title: `Check-in habilitado · ${l.code}`, text: `${l.route}, ${dayTxt(dep, l.tz)} a las ${l.dep}. Hacelo online y elegí asiento.`,
+          cta: { label: "Hacer check-in", url: l.checkin.url } });
+      }
+    });
+    ACTS.forEach((x, i) => {
+      if (!x.meet) return;
+      const meet = at(x.d, x.meet, x.tz), by = x.by ? at(x.d, x.by, x.tz) : meet;
+      out.push({ id: `act${i}-eve`, icon: "ticket", at: at(prevDay(x.d), "20:00", x.tz), until: at(x.d, "00:00", x.tz), tz: x.tz, event: meet, go: x.go,
+        title: `Mañana: ${x.name}`, text: `${x.place}, a las ${x.meet}.${x.by ? ` Llegá a las ${x.by}.` : ""} ${x.bring || ""}`.trim() });
+      out.push({ id: `act${i}-go`, icon: "ticket", at: new Date(by - 60 * 60000), until: meet, tz: x.tz, event: meet, go: x.go, urgent: true,
+        title: `Hoy: ${x.name} a las ${x.meet}`, text: `${x.place}.${x.by ? ` Llegá a las ${x.by}.` : ""} ${x.bring || ""}`.trim() });
+    });
+    out.push({ id: "vila-garden", icon: "bed", at: new Date("2026-11-09T12:00:00-03:00"), until: new Date("2026-11-10T07:45:00-03:00"), tz: "-03:00", event: new Date("2026-11-10T07:45:00-03:00"), go: "#viaje-hoteles",
+      title: "Avisale a Vila Garden a qué hora llegás", text: "La recepción tiene horario limitado: escribí a vilagarden@vilaguesthouses.com o llamá al +351 21 813 8060 al menos 48 horas antes de llegar (antes del 10 nov, 07:45 hora Argentina)." });
+    CHECKOUT.forEach(([c, d, tz]) => {
+      const h = PLACES[(CITY_BY_ID[c] || {}).hotel]; if (!h) return;
+      out.push({ id: `out-${c}`, icon: "bed", at: at(d, "08:00", tz), until: at(d, "12:00", tz), tz, event: at(d, "12:00", tz), go: "#viaje-hoteles",
+        title: `Hoy dejás ${h.name}`, text: "Check-out hasta las 12:00. Revisá que no quede nada en la habitación." });
+    });
+    return out.sort((a, b) => a.at - b.at);
+  }
+  /* Avisos según lo que falta reservar (solo en la app) */
+  function bookingReminders() {
+    let saved = {}; try { saved = JSON.parse(localStorage.getItem("facu-reservas-v1") || "{}") || {}; } catch (e) {}
+    const out = [];
+    BOOK.forEach((x, i) => {
+      if (saved["bk-" + i]) return;
+      const tz = x.city === "Lisboa" || x.city === "Sintra" || x.city === "Oporto" ? "+00:00" : "+01:00";
+      out.push({ id: `bk${i}`, icon: "ticket", at: at(addDays(x.d, -2), "20:00", tz), until: at(x.d, "10:00", tz), tz, event: at(x.d, "09:00", tz), go: "#viaje-reservas", dyn: true,
+        title: `${x.must ? "Reservá" : "Conviene reservar"}: ${x.name}`, text: `Es el ${dayTxt(at(x.d, "12:00", tz), tz)}. ${x.note}`, cta: x.url ? { label: "Sitio oficial", url: x.url } : null });
+    });
+    const must = BOOK.filter((x, i) => x.must && !saved["bk-" + i]);
+    if (must.length) out.push({ id: "bk-antes", icon: "ticket", at: new Date("2026-11-09T09:00:00-03:00"), until: new Date("2026-11-11T09:00:00-03:00"), tz: "-03:00", event: new Date("2026-11-11T09:00:00-03:00"), go: "#viaje-reservas", dyn: true,
+      title: `${must.length} ${must.length === 1 ? "entrada imprescindible" : "entradas imprescindibles"} sin reservar`, text: `${must.map(x => x.name).join(", ")}. Se agotan: conviene sacarlas antes de viajar.` });
+    return out;
+  }
+  const DISMISS_KEY = "facu-avisos-listos-v1";
+  const dismissed = () => { try { return new Set(JSON.parse(localStorage.getItem(DISMISS_KEY) || "[]")); } catch (e) { return new Set(); } };
+  const dismiss = id => { const s = dismissed(); s.add(id); try { localStorage.setItem(DISMISS_KEY, JSON.stringify([...s])); } catch (e) {} };
+  const allReminders = () => fixedReminders().concat(bookingReminders()).sort((a, b) => a.at - b.at);
+  const nowDate = () => window.__FACU_NOW ? new Date(window.__FACU_NOW) : new Date();
+  const activeReminders = () => { const n = nowDate(), d = dismissed(); return allReminders().filter(r => r.at <= n && n < r.until && !d.has(r.id)).sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0) || (b.checkin != null ? 1 : 0) - (a.checkin != null ? 1 : 0) || a.event - b.event); };
+  const upcomingReminders = () => { const n = nowDate(); return allReminders().filter(r => r.at > n); };
+  const relTime = date => {
+    const m = Math.round((date - nowDate()) / 60000);
+    if (m < 60) return m <= 1 ? "en un minuto" : `en ${m} minutos`;
+    const h = Math.round(m / 60); if (h < 24) return h === 1 ? "en una hora" : `en ${h} horas`;
+    const d = Math.round(m / 1440); return d === 1 ? "mañana" : `en ${d} días`;
+  };
+  const remRow = (r, opts = {}) => `<li class="rem${r.urgent ? " urgent" : ""}${opts.past ? " past" : ""}" data-rem="${r.id}">
+      <span class="rem-ic">${I(r.icon === "plane" ? "plane" : r.icon === "train" ? "train" : r.icon === "bed" ? "bed" : r.icon === "check" ? "check" : "ticket")}</span>
+      <div class="rem-b"><p class="rem-when">${opts.active ? "Ahora" : opts.past ? "Pasado" : `${dayTxt(r.at, r.tz)} · ${hhmm(r.at, r.tz)}`}${opts.active || opts.past ? "" : ` · ${relTime(r.at)}`}</p>
+        <b>${esc(r.title)}</b><p>${esc(r.text)}</p>
+        <div class="rem-act">${r.cta ? `<a class="btn ${r.checkin != null ? "btn-primary" : "btn-soft"}" href="${esc(r.cta.url)}" target="_blank" rel="noopener">${I(r.checkin != null ? "check" : "ext")}${esc(r.cta.label)}</a>` : ""}${r.go && !opts.noGo ? `<a class="btn btn-soft" href="${r.go}">Ver</a>` : ""}${opts.active ? `<button type="button" class="btn btn-soft" data-done="${r.id}">Listo</button>` : ""}</div></div></li>`;
+  function bindRems(root) {
+    $$("[data-done]", root).forEach(b => b.addEventListener("click", () => { dismiss(b.dataset.done); buzz(); const li = b.closest(".rem"); if (li) li.remove(); toast("Aviso marcado como listo"); }));
+  }
+  /* Tarjeta del inicio: lo que hay que hacer ahora, o lo próximo */
+  function homeAlertsHTML() {
+    const act = activeReminders().slice(0, 3);
+    if (act.length) return `<section class="alerts"><div class="sec-title"><h2>Avisos</h2><a href="#viaje-avisos">Todos</a></div><ol class="rems">${act.map(r => remRow(r, { active: true })).join("")}</ol></section>`;
+    const next = upcomingReminders()[0];
+    if (!next) return "";
+    return `<section class="alerts"><div class="sec-title"><h2>Próximo aviso</h2><a href="#viaje-avisos">Todos</a></div><ol class="rems">${remRow(next)}</ol></section>`;
+  }
+  /* Pestaña Avisos */
+  function avisosHTML() {
+    const n = nowDate(), d = dismissed(), all = allReminders();
+    const act = activeReminders();
+    const next = all.filter(r => r.at > n);
+    const past = all.filter(r => !act.includes(r) && !next.includes(r));
+    const groups = {}; next.forEach(r => { const k = isoDay(r.at, r.tz); (groups[k] = groups[k] || []).push(r); });
+    const standalone = window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
+    const canNotify = window.__PWA && "Notification" in window && "serviceWorker" in navigator;
+    return `<div class="info-card cal-card">
+        <h3>Avisos en el iPhone</h3>
+        <p style="color:var(--muted);font-size:15px">Agregá los avisos al Calendario del iPhone: te llegan como notificación aunque no tengas internet ni la app abierta. Incluye vuelos, trenes, aperturas de check-in, excursiones y check-out de hoteles.</p>
+        <div class="btn-row"><a class="btn btn-primary" href="avisos.ics">${I("city")}Agregar al Calendario</a>${canNotify ? `<button type="button" class="btn btn-soft" id="notif-on">${I("info")}${typeof Notification !== "undefined" && Notification.permission === "granted" ? "Avisos de la app activados" : "Activar avisos de la app"}</button>` : ""}</div>
+        <p class="doc-hint">Al tocar "Agregar al Calendario", el iPhone pregunta si querés agregar los eventos: tocá "Agregar todo".${canNotify && !standalone ? " Los avisos de la app funcionan solo desde la app instalada en la pantalla de inicio." : ""}</p>
+      </div>
+      ${act.length ? `<div class="group-h"><h2>Ahora</h2></div><ol class="rems">${act.map(r => remRow(r, { active: true })).join("")}</ol>` : ""}
+      ${Object.keys(groups).map(k => { const r0 = groups[k][0]; return `<div class="group-h"><h2>${esc(dayTxt(r0.at, r0.tz))}</h2><small>${relTime(r0.at)}</small></div><ol class="rems">${groups[k].map(r => remRow(r)).join("")}</ol>`; }).join("")}
+      ${past.length ? `<details class="more"><summary>Ver ${past.length} avisos pasados</summary><ol class="rems">${past.map(r => remRow(r, { past: true, noGo: true })).join("")}</ol></details>` : ""}`;
+  }
+  /* Calendario (.ics) con alarmas */
+  function makeICS() {
+    const z = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d+Z$/, "Z");
+    const e = t => String(t).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+    const fold = line => { const out = []; let cur = ""; for (const ch of line) { if (new TextEncoder().encode(cur + ch).length > 73) { out.push(cur); cur = " " + ch; } else cur += ch; } out.push(cur); return out.join("\r\n"); };
+    const L = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Facu en Europa//Avisos//ES", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:Facu en Europa", "X-WR-TIMEZONE:Europe/Madrid"];
+    const stamp = z(new Date("2026-11-09T12:00:00Z"));
+    const ev = (uid, start, end, summary, loc, desc, alarms, url) => {
+      L.push("BEGIN:VEVENT", `UID:${uid}@facu-en-europa`, `DTSTAMP:${stamp}`, `DTSTART:${z(start)}`, `DTEND:${z(end)}`, fold(`SUMMARY:${e(summary)}`));
+      if (loc) L.push(fold(`LOCATION:${e(loc)}`));
+      if (desc) L.push(fold(`DESCRIPTION:${e(desc)}`));
+      if (url) L.push(fold(`URL:${url}`));
+      alarms.forEach(a => L.push("BEGIN:VALARM", "ACTION:DISPLAY", fold(`DESCRIPTION:${e(a.text)}`), `TRIGGER;VALUE=DATE-TIME:${z(a.at)}`, "END:VALARM"));
+      L.push("END:VEVENT");
+    };
+    const rem = fixedReminders(), byId = Object.fromEntries(rem.map(r => [r.id, r]));
+    LEGS.forEach((l, i) => {
+      if (!l.dep || !l.tz) return;
+      const dep = legDep(l), arr = l.arr ? at(l.arrD || l.d, l.arr, l.arrTz || l.tz) : new Date(+dep + 3600000);
+      const alarms = [byId[`leg${i}-eve`], byId[`leg${i}-go`], byId[`leg${i}-conn`]].filter(Boolean).map(r => ({ at: r.at, text: `${r.title}. ${r.text}` }));
+      const by = legArriveBy(l);
+      ev(`leg${i}`, dep, arr > dep ? arr : new Date(+dep + 3600000), `${l.mode === "Vuelo" ? "✈️" : "🚆"} ${l.code || ""} ${l.route}`.replace(/\s+/g, " "), l.from,
+        [l.note, by ? `Estar en ${l.from} a las ${hhmm(by, l.tz)} (${TZ_NAME[l.tz] || ""}).${l.arrive && l.arrive.src ? " " + l.arrive.src : ""}` : "", l.rule || ""].filter(Boolean).join("\n"), alarms);
+      const ci = byId[`leg${i}-ci`];
+      if (ci) ev(`leg${i}-ci`, ci.at, new Date(+ci.at + 30 * 60000), `Check-in habilitado · ${l.code}`, "", `${l.checkin.text}\n${l.checkin.url}`, [{ at: ci.at, text: ci.title }], l.checkin.url);
+    });
+    ACTS.forEach((x, i) => {
+      if (!x.meet) return;
+      const meet = at(x.d, x.meet, x.tz);
+      ev(`act${i}`, meet, new Date(+meet + 3600000), `🎟️ ${x.name}`, x.place, x.from, [byId[`act${i}-eve`], byId[`act${i}-go`]].filter(Boolean).map(r => ({ at: r.at, text: `${r.title}. ${r.text}` })));
+    });
+    ["vila-garden", ...CHECKOUT.map(c => "out-" + c[0])].forEach(id => { const r = byId[id]; if (r) ev(id, r.at, new Date(+r.at + 30 * 60000), r.title, "", r.text, [{ at: r.at, text: r.title }]); });
+    L.push("END:VCALENDAR");
+    return L.join("\r\n") + "\r\n";
+  }
+  window.__facuICS = makeICS;
+  /* Avisos de la app (mientras está abierta o al abrirla), solo en la app instalada */
+  const NOTIF_KEY = "facu-avisos-notificados-v1";
+  async function notifyDue() {
+    if (!window.__PWA || typeof Notification === "undefined" || Notification.permission !== "granted") return;
+    let sent = new Set(); try { sent = new Set(JSON.parse(localStorage.getItem(NOTIF_KEY) || "[]")); } catch (e) {}
+    const reg = await navigator.serviceWorker.getRegistration().catch(() => null); if (!reg) return;
+    for (const r of activeReminders()) {
+      if (sent.has(r.id)) continue;
+      try { await reg.showNotification(r.title, { body: r.text, tag: r.id, icon: "icons/icon-192.png", data: { go: r.go } }); sent.add(r.id); } catch (e) {}
+    }
+    try { localStorage.setItem(NOTIF_KEY, JSON.stringify([...sent])); } catch (e) {}
+  }
+  /* Detalle de cada pasaje: hora de llegada sugerida, check-in y localizador */
+  const PNR_KEY = "facu-localizador-v1";
+  const getPnr = air => { try { return (JSON.parse(localStorage.getItem(PNR_KEY) || "{}") || {})[air] || ""; } catch (e) { return ""; } };
+  const setPnr = (air, v) => { try { const o = JSON.parse(localStorage.getItem(PNR_KEY) || "{}") || {}; if (v) o[air] = v; else delete o[air]; localStorage.setItem(PNR_KEY, JSON.stringify(o)); } catch (e) {} };
+  function legExtraHTML(l) {
+    if (!l.tz || !l.dep) return "";
+    const parts = [], by = legArriveBy(l);
+    if (by) parts.push(`<p class="tk-tip">${I("info", "inline")} Estar en ${esc(l.from)} a las <b>${hhmm(by, l.tz)}</b>${l.arrive.src ? `. <span>${esc(l.arrive.src)}</span>` : "."}</p>`);
+    else if (!l.conn) parts.push(`<p class="tk-tip">${I("pin", "inline")} Sale de <b>${esc(l.from)}</b>.${l.rule ? ` ${esc(l.rule)}` : ""}</p>`);
+    const cs = checkinState(l);
+    if (cs && cs.st !== "past") {
+      const pnr = getPnr(l.air);
+      parts.push(cs.st === "open"
+        ? `<div class="ci open"><span class="ci-chip">${I("check", "inline")} Check-in abierto</span><a class="btn btn-primary" href="${esc(l.checkin.url)}" target="_blank" rel="noopener">${I("check")}Hacer check-in</a></div>`
+        : `<div class="ci"><span class="ci-chip soon">Check-in online desde el ${dayTxt(cs.opens, l.tz)} a las ${hhmm(cs.opens, l.tz)} (${TZ_NAME[l.tz]})</span><a class="link-btn" href="${esc(l.checkin.url)}" target="_blank" rel="noopener">Sitio de check-in</a></div>`);
+      parts.push(`<p class="tk-tip">${esc(l.checkin.text)}</p>`);
+      parts.push(`<div class="pnr" data-air="${l.air}">${pnr ? `<span><small>Localizador</small><b>${esc(pnr)}</b></span><button type="button" class="btn btn-soft" data-copy="${esc(pnr)}" data-label="Localizador">Copiar</button><button type="button" class="link-btn" data-pnr-clear>Cambiar</button>` : `<label for="pnr-${l.air}">Localizador de la reserva <small>(queda guardado solo en este celular)</small></label><span class="pnr-in"><input id="pnr-${l.air}" maxlength="6" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="6 letras y números"><button type="button" class="btn btn-soft" data-pnr-save>Guardar</button></span>`}</div>`);
+    }
+    return parts.join("");
+  }
+  function bindPnr(root) {
+    $$(".pnr", root).forEach(box => {
+      const air = box.dataset.air;
+      const save = $("[data-pnr-save]", box); if (save) save.addEventListener("click", () => { const v = $("input", box).value.trim().toUpperCase(); if (!/^[A-Z0-9]{5,6}$/.test(v)) { toast("El localizador tiene 6 letras y números"); return; } setPnr(air, v); toast("Localizador guardado en este celular"); route(); });
+      const clr = $("[data-pnr-clear]", box); if (clr) clr.addEventListener("click", () => { setPnr(air, ""); route(); });
+    });
+  }
+
   function renderTrip(tab) {
     showPage(); document.body.classList.remove("on-hero"); setTab("viaje");
-    const TABS = [["pasajes", "Pasajes"], ["hoteles", "Hoteles"], ["asistencia", "Asistencia"], ["reservas", "Reservas"], ["valija", "Valija"], ["consejos", "Consejos"]];
+    const TABS = [["avisos", "Avisos"], ["pasajes", "Vuelos y trenes"], ["hoteles", "Hoteles"], ["asistencia", "Asistencia"], ["reservas", "Reservas"], ["valija", "Valija"], ["consejos", "Consejos"]];
     if (!TABS.some(x => x[0] === tab)) tab = "pasajes";
     const isPast = s => parse(s) < t;
     const dateBox = s => { const dt = parse(s); return `<div class="tk-date"><b>${dt.getDate()}</b><span>${WD[dt.getDay()]} ${MO[dt.getMonth()]}</span></div>`; };
     let body = "";
-    if (tab === "pasajes") {
-      body = `${lockedCard()}<p style="color:var(--muted);font-size:15.5px">Todos los trenes y vuelos en orden, con los horarios de los pasajes. Cada uno tiene su pasaje con el QR.</p>
+    if (tab === "avisos") {
+      body = avisosHTML();
+    } else if (tab === "pasajes") {
+      body = `${lockedCard()}<p style="color:var(--muted);font-size:15.5px">Todos los vuelos y trenes en orden, con los horarios de los pasajes. Todas las horas son locales del lugar de salida.</p>
       <ol class="tickets">${LEGS.map(l => `
         <li class="tk${isPast(l.d) ? " past" : ""}${l.d === todayStr ? " now" : ""}">${dateBox(l.d)}
-          <div class="tk-body"><span class="tk-mode">${I(l.mode === "Vuelo" ? "plane" : "train")}${l.mode}${l.d === todayStr ? " · hoy" : ""}</span><h3>${esc(l.route)}</h3>
-            ${l.dep || l.arr ? `<p class="tk-times">${l.dep ? `<span><small>Sale</small>${l.dep}</span>` : ""}${l.dep && l.arr ? `<i aria-hidden="true">→</i>` : ""}${l.arr ? `<span><small>Llega</small>${l.arr}</span>` : ""}</p>` : ""}
-            ${l.note ? `<p class="tk-note">${esc(l.note)}</p>` : ""}${DOC_SLOTS[legSlot(l)] ? `<div class="btn-row">${docBtn(legSlot(l))}</div>` : ""}</div></li>`).join("")}</ol>
+          <div class="tk-body"><span class="tk-mode">${I(l.mode === "Vuelo" ? "plane" : "train")}${l.mode}${l.code ? " · " + esc(l.code) : ""}${l.conn ? " · conexión" : ""}${l.d === todayStr ? " · hoy" : ""}</span><h3>${esc(l.route)}</h3>
+            ${l.dep || l.arr ? `<p class="tk-times">${l.dep ? `<span><small>Sale</small>${l.dep}</span>` : ""}${l.dep && l.arr ? `<i aria-hidden="true">→</i>` : ""}${l.arr ? `<span><small>Llega${l.arrD ? " " + parse(l.arrD).getDate() + " " + MO[parse(l.arrD).getMonth()] : ""}</small>${l.arr}</span>` : ""}</p>` : ""}
+            ${l.note ? `<p class="tk-note">${esc(l.note)}</p>` : ""}${legExtraHTML(l)}${DOC_SLOTS[legSlot(l)] ? `<div class="btn-row">${docBtn(legSlot(l))}</div>` : ""}</div></li>`).join("")}</ol>
       <div class="group-h"><h2>Excursiones y entradas</h2><small>reservadas</small></div>
       <ol class="tickets">${ACTS.map(x => `<li class="tk${isPast(x.d) ? " past" : ""}">${dateBox(x.d)}<div class="tk-body"><span class="tk-mode">${I("ticket")}Reservado</span><h3>${esc(x.name)}</h3><p class="tk-note">${esc(x.from)}</p><div class="btn-row">${x.slot ? docBtn(x.slot) : ""}<a class="btn btn-soft" href="${x.go}" style="flex:0 1 auto;min-height:40px;border-radius:999px;font-size:14.5px">Ver el día</a></div></div></li>`).join("")}</ol>`;
     } else if (tab === "hoteles") {
@@ -2575,6 +2813,11 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     if (tab === "valija") setupPacking();
     $$("[data-copy]", view).forEach(b => b.addEventListener("click", () => copyText(b.dataset.copy, b.dataset.label)));
     bindDocs(view);
+    bindRems(view); bindPnr(view);
+    const nb = $("#notif-on", view);
+    if (nb) nb.addEventListener("click", async () => {
+      try { const p = await Notification.requestPermission(); if (p === "granted") { toast("Avisos de la app activados"); notifyDue(); route(); } else toast("El iPhone no dio permiso para avisos"); } catch (e) { toast("Este celular no permite avisos de la app"); }
+    });
     toTop(0);
   }
   function setupBookings() {
@@ -2908,6 +3151,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
+  notifyDue(); setInterval(notifyDue, 60000); document.addEventListener("visibilitychange", () => { if (!document.hidden) notifyDue(); });
   restoreKey();
   route();
 })();
