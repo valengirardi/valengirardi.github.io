@@ -737,6 +737,10 @@ details.more[open] summary::after { content: " –"; }
 .pnr-in { display: flex; gap: 8px; width: 100%; }
 .pnr-in input { flex: 1; min-width: 0; min-height: 40px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); font: 600 16px var(--body); padding: 0 12px; text-transform: uppercase; letter-spacing: .08em; }
 .cal-card { gap: 12px; }
+.cal-help { border-top: 1px solid var(--line); padding-top: 10px; }
+.cal-help summary { cursor: pointer; font-weight: 700; font-size: 15px; color: var(--ink); }
+.cal-help p { color: var(--muted); font-size: 14px; margin: 8px 0; }
+.cal-help a { color: var(--ink); font-weight: 700; text-decoration: underline; }
 @media (min-width: 900px) { .home-body > .alerts { grid-column: 1 / -1; } }
 </style>
 </head>
@@ -2671,6 +2675,12 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     if (!next) return "";
     return `<section class="alerts"><div class="sec-title"><h2>Próximo aviso</h2><a href="#viaje-avisos">Todos</a></div><ol class="rems">${remRow(next)}</ol></section>`;
   }
+  /* Enlace al calendario: en el iPhone se abre directo en Safari (desde la app instalada o desde claude.ai, el visor interno no puede abrir calendarios) */
+  const CAL_URL = "https://valengirardi.github.io/facu-europa/avisos.ics";
+  const calLinks = () => {
+    const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    return { ios, add: ios ? CAL_URL.replace("https://", "x-safari-https://") : CAL_URL, sub: CAL_URL.replace("https://", "webcal://") };
+  };
   /* Pestaña Avisos */
   function avisosHTML() {
     const n = nowDate(), d = dismissed(), all = allReminders();
@@ -2683,8 +2693,13 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     return `<div class="info-card cal-card">
         <h3>Avisos en el iPhone</h3>
         <p style="color:var(--muted);font-size:15px">Agregá los avisos al Calendario del iPhone: te llegan como notificación aunque no tengas internet ni la app abierta. Incluye vuelos, trenes, aperturas de check-in, excursiones y check-out de hoteles.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="${window.__PWA ? "avisos.ics" : "https://valengirardi.github.io/facu-europa/avisos.ics"}" target="_blank" rel="noopener">${I("city")}Agregar al Calendario</a>${canNotify ? `<button type="button" class="btn btn-soft" id="notif-on">${I("info")}${typeof Notification !== "undefined" && Notification.permission === "granted" ? "Avisos de la app activados" : "Activar avisos de la app"}</button>` : ""}</div>
-        <p class="doc-hint">Al tocar "Agregar al Calendario", el iPhone pregunta si querés agregar los eventos: tocá "Agregar todo".${canNotify && !standalone ? " Los avisos de la app funcionan solo desde la app instalada en la pantalla de inicio." : ""}</p>
+        <div class="btn-row"><a class="btn btn-primary" id="cal-add" href="${calLinks().add}"${calLinks().ios ? "" : ' target="_blank" rel="noopener"'}>${I("city")}Agregar al Calendario</a>${canNotify ? `<button type="button" class="btn btn-soft" id="notif-on">${I("info")}${typeof Notification !== "undefined" && Notification.permission === "granted" ? "Avisos de la app activados" : "Activar avisos de la app"}</button>` : ""}</div>
+        <p class="doc-hint">Se abre Safari y el iPhone pregunta si querés agregar los eventos: tocá <b>Agregar todo</b>. Hace falta internet solo esa vez; después los avisos suenan aunque estés sin conexión.${canNotify && !standalone ? " Los avisos de la app funcionan solo desde la app instalada en la pantalla de inicio." : ""}</p>
+        <details class="cal-help"><summary>¿No se abre?</summary>
+          <p>Probá suscribirte al calendario: <a href="${calLinks().sub}">Suscribirme al calendario</a>. El iPhone pregunta si querés suscribirte: tocá <b>Suscribirse</b> y, antes de tocar OK, desactivá la opción de quitar las alertas para que suenen los avisos.</p>
+          <p>Otra forma: copiá el enlace, pegalo en Safari y tocá <b>Agregar todo</b>.</p>
+          <button type="button" class="btn btn-soft" data-copy="${CAL_URL}" data-label="Enlace">${I("ext")}Copiar enlace</button>
+        </details>
       </div>
       ${act.length ? `<div class="group-h"><h2>Ahora</h2></div><ol class="rems">${act.map(r => remRow(r, { active: true })).join("")}</ol>` : ""}
       ${Object.keys(groups).map(k => { const r0 = groups[k][0]; return `<div class="group-h"><h2>${esc(dayTxt(r0.at, r0.tz))}</h2><small>${relTime(r0.at)}</small></div><ol class="rems">${groups[k].map(r => remRow(r)).join("")}</ol>`; }).join("")}
