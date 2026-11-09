@@ -669,6 +669,35 @@ details.more[open] summary::after { content: " –"; }
 .pg-btn.off { visibility: hidden; }
 @media (hover: hover) { .pg-btn:hover { background: var(--line); } }
 
+
+.btn-doc { background: var(--ink); color: var(--card); }
+.btn-doc svg.i { width: 18px; height: 18px; }
+.vault-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; margin-bottom: 14px; }
+.vault-card > svg.i { width: 26px; height: 26px; }
+.vault-card b { display: block; font-size: 16px; }
+.vault-card p { color: var(--muted); font-size: 14px; line-height: 1.4; margin: 2px 0 0; }
+.vault-card .btn { min-height: 42px; padding: 0 16px; }
+.vault-card.open > svg.i { color: #15803D; }
+@media (max-width: 480px) { .vault-card { grid-template-columns: auto minmax(0, 1fr); } .vault-card .btn { grid-column: 1 / -1; } }
+.vault-sheet { gap: 16px; padding-bottom: 8px; }
+.vault-lead { color: var(--muted); font-size: 16px; line-height: 1.5; margin: 0; }
+.pin-in, .pass-in { width: 100%; min-height: 56px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--card); color: var(--ink); font: 600 20px/1 var(--body, system-ui); padding: 0 16px; }
+.pin-in { letter-spacing: .6em; text-align: center; font-size: 26px; }
+.pin-in:focus, .pass-in:focus { outline: 3px solid var(--wine); outline-offset: 1px; }
+.btn.wide { width: 100%; min-height: 54px; font-size: 17px; }
+.v-err { color: #B42318; font-weight: 600; min-height: 1.2em; margin: 0; }
+.v-alt { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.link-btn { background: none; border: 0; padding: 6px 0; color: var(--wine); font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.pin-set { display: grid; gap: 8px; }
+.pin-set label { font-weight: 700; }
+.doc-view { gap: 14px; }
+.doc-hint { color: var(--muted); font-size: 14px; margin: 0; }
+.doc-pages { display: grid; gap: 14px; }
+.doc-pages figure { margin: 0; display: grid; gap: 6px; }
+.doc-ph { background: #FFFFFF; border-radius: 12px; overflow: hidden; display: grid; place-items: center; border: 1px solid var(--line); }
+.doc-ph span { color: #586174; font-size: 14px; padding: 16px; text-align: center; }
+.doc-ph img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.doc-pages figcaption { font-size: 13px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -1346,7 +1375,7 @@ const CITIES = [
     hero: "mezquita",
     days: [
       { id: "d1", tab: "Sábado 21", when: "sáb 21 nov · de paso", title: "La Córdoba histórica",
-        travel: ["Tren Madrid → Córdoba: sale 09:35, llega 11:24.", "Tren Córdoba → Sevilla: sale 18:54, llega 20:30. Estate en la estación a las 18:30 y retirá la valija de la consigna antes.", "En Sevilla: Basic Hotel Sevilla Catedral, Calle Álvarez Quintero 38."],
+        travel: ["Tren Madrid → Córdoba: sale 09:35, llega 11:24.", "Tren Córdoba → Sevilla: sale 18:54, llega 20:35. Estate en la estación a las 18:30 y retirá la valija de la consigna antes.", "En Sevilla: Basic Hotel Sevilla Catedral, Calle Álvarez Quintero 38."],
         intro: "Tenés de 11:30 a 18:30. Lo ordené para no ir y volver: Mezquita y Judería, el río, las plazas y al final el Palacio de Viana, que queda más cerca de la estación.",
         blocks: [
           { h: "Mañana · Mezquita y Judería", stops: ["estacion-cordoba", "naranjos", "mezquita", "flores", "juderia"] },
@@ -1360,7 +1389,7 @@ const CITIES = [
     lead: "Tu base en Andalucía. Desde acá salen las excursiones a Ronda, Granada y Málaga.",
     hero: "plaza-espana",
     days: [
-      { id: "d1", tab: "Domingo 22", when: "dom 22 nov · día completo", travel: ["Llegaste anoche a las 20:30. Hotel: Basic Hotel Sevilla Catedral, a pasos del Alcázar y la Catedral."], title: "Sevilla monumental, Plaza de España y Triana",
+      { id: "d1", tab: "Domingo 22", when: "dom 22 nov · día completo", travel: ["Llegaste anoche a las 20:35. Hotel: Basic Hotel Sevilla Catedral, a pasos del Alcázar y la Catedral."], title: "Sevilla monumental, Plaza de España y Triana",
         intro: "Es domingo y la Catedral abre recién a las 14:30, así que va después del almuerzo.",
         blocks: [
           { h: "Mañana · Alcázar y Santa Cruz", stops: ["alcazar", "santa-cruz"] },
@@ -1545,7 +1574,8 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V7.5A1.5 1.5 0 0 1 5.5 6H10"/>',
     star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>',
     camera: '<path d="M4 7.5h3.5L9 5h6l1.5 2.5H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/>',
-    hotel: '<path d="M4 21V4h11v17M15 9h5v12M8 8h3M8 12h3M8 16h3"/>'
+    hotel: '<path d="M4 21V4h11v17M15 9h5v12M8 8h3M8 12h3M8 16h3"/>',
+    lock: '<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/>'
   };
   const I = (k, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
 
@@ -1697,14 +1727,14 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
   /* ================= INICIO ================= */
   const LEGS = [
     { d: "2026-11-11", mode: "Vuelo", route: "Buenos Aires (EZE) → Lisboa", dep: "", arr: "10:45", note: "Llega el jueves 12. Horario de salida en el pasaje de la agencia." },
-    { d: "2026-11-15", mode: "Tren", route: "Lisboa → Oporto", dep: "09:39", arr: "12:43" },
-    { d: "2026-11-18", mode: "Vuelo", route: "Oporto → Madrid", dep: "12:25", arr: "14:45", note: "Iberia. La llegada es en hora de España (una hora más que Portugal). Llegá al aeropuerto dos horas antes." },
-    { d: "2026-11-21", mode: "Tren", route: "Madrid → Córdoba", dep: "09:35", arr: "11:24", note: "Dejá la valija en la consigna de la estación de Córdoba." },
-    { d: "2026-11-21", mode: "Tren", route: "Córdoba → Sevilla", dep: "18:54", arr: "20:30" },
-    { d: "2026-11-25", mode: "Tren", route: "Sevilla → Málaga", dep: "07:51", arr: "10:02" },
-    { d: "2026-11-25", mode: "Tren", route: "Málaga → Sevilla", dep: "16:22", arr: "18:30" },
-    { d: "2026-11-26", mode: "Tren", route: "Sevilla → Valencia", dep: "16:44", arr: "21:06" },
-    { d: "2026-11-28", mode: "Tren", route: "Valencia → Barcelona", dep: "11:25", arr: "14:50" },
+    { d: "2026-11-15", mode: "Tren", route: "Lisboa → Oporto", dep: "09:39", arr: "12:43", note: "Intercidades 721. Sale de Lisboa Oriente (no de Santa Apolónia) y llega a Porto Campanhã." },
+    { d: "2026-11-18", mode: "Vuelo", route: "Oporto → Madrid", dep: "12:25", arr: "14:45", note: "Iberia IB 546, llega a Madrid Barajas Terminal 4. La llegada es en hora de España (una hora más que Portugal). Una valija despachada incluida. Llegá al aeropuerto dos horas antes." },
+    { d: "2026-11-21", mode: "Tren", route: "Madrid → Córdoba", dep: "09:35", arr: "11:24", note: "AVE 02092, sale de Madrid Puerta de Atocha. Dejá la valija en la consigna de la estación de Córdoba." },
+    { d: "2026-11-21", mode: "Tren", route: "Córdoba → Sevilla", dep: "18:54", arr: "20:35", note: "Media Distancia 35035, llega a Sevilla Santa Justa." },
+    { d: "2026-11-25", mode: "Tren", route: "Sevilla → Málaga", dep: "07:51", arr: "10:02", note: "Avant 08085, de Sevilla Santa Justa a Málaga María Zambrano." },
+    { d: "2026-11-25", mode: "Tren", route: "Málaga → Sevilla", dep: "16:22", arr: "18:30", note: "Avant 08764, desde Málaga María Zambrano." },
+    { d: "2026-11-26", mode: "Tren", route: "Sevilla → Valencia", dep: "16:44", arr: "21:06", note: "AVE 03981, llega a Valencia Joaquín Sorolla." },
+    { d: "2026-11-28", mode: "Tren", route: "Valencia → Barcelona", dep: "11:25", arr: "14:50", note: "Euromed 01112. Ojo: sale de Valencia Estació del Nord (no de Joaquín Sorolla) y llega a Barcelona Sants. Cierran el acceso al tren 2 minutos antes." },
     { d: "2026-12-02", mode: "Vuelo", route: "Barcelona → Buenos Aires (EZE)", dep: "", arr: "", note: "Horario en el pasaje de la agencia. Estate en el aeropuerto tres horas antes." }
   ];
   const BOOK = [
@@ -1726,9 +1756,9 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     { d: "2026-11-30", name: "Sagrada Família con audioguía" }
   ];
   const ACTS = [
-    { d: "2026-11-23", name: "Excursión a Ronda y pueblos blancos", from: "Desde Sevilla", go: "#ronda" },
-    { d: "2026-11-24", name: "Alhambra y Palacios Nazaríes", from: "Desde Sevilla · llevá el pasaporte", go: "#granada" },
-    { d: "2026-11-30", name: "Entrada a la Sagrada Família con audioguía", from: "Barcelona · el horario está en la reserva", go: "#barcelona-d2" }
+    { d: "2026-11-23", name: "Excursión a Ronda y pueblos blancos", from: "Punto de encuentro: Calle Trajano 6, Sevilla, a las 9:00. Llegá 15 minutos antes. Vuelve al mismo lugar.", go: "#ronda", slot: "act:ronda" },
+    { d: "2026-11-24", name: "Alhambra y Palacios Nazaríes", from: "Punto de encuentro: Calle Zaragoza 1, Sevilla, a las 8:20 (sale 8:30). Llevá el pasaporte: sin documento no entrás a la Alhambra.", go: "#granada", slot: "act:alhambra" },
+    { d: "2026-11-30", name: "Entrada a la Sagrada Família con audioguía", from: "Entrada a las 10:45 por carrer de la Marina. Llevá el pasaporte. La audioguía se baja en la app oficial de la Sagrada Família.", go: "#barcelona-d2", slot: "act:sagrada" }
   ];
   const HOTELS = [
     { c: "lisboa", when: "12 al 15 nov · 3 noches" }, { c: "oporto", when: "15 al 18 nov · 3 noches" }, { c: "madrid", when: "18 al 21 nov · 3 noches" },
@@ -1825,7 +1855,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
         <a href="#viaje-hoteles">${I("bed")}<b>Hoteles</b><span>Dirección y cómo llegar</span></a>
         <a href="#viaje-reservas">${I("check")}<b>Reservas</b><span>${pend ? `${pend} por confirmar` : "Todo reservado"}</span></a>
         <a href="#viaje-valija">${I("bag")}<b>Valija</b><span>Lista para tildar</span></a>
-        <a href="#viaje-asistencia" class="wide">${I("info")}<b>Asistencia al viajero</b><span>Coris · voucher ${ASIST.voucher} · WhatsApp y teléfonos</span></a>
+        <a href="#viaje-asistencia" class="wide">${I("info")}<b>Asistencia al viajero</b><span>Coris · voucher, WhatsApp y teléfonos</span></a>
       </section>
       <section id="inicio-ruta">
         <div class="sec-title"><h2>La ruta</h2><span class="eyebrow">Tren y un vuelo</span></div>
@@ -2440,7 +2470,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
 
   /* ================= VIAJE ================= */
   const ASIST = {
-    empresa: "Coris asistencia al viajero", plan: "Discover", voucher: "AR26110633811", vigencia: "11/11/2026 al 03/12/2026 (23 días)", destino: "Europa", emisor: "Conexion Global Viajes y Turismo",
+    empresa: "Coris asistencia al viajero", plan: "Discover", vigencia: "11/11/2026 al 03/12/2026 (23 días)", destino: "Europa", emisor: "Conexion Global Viajes y Turismo",
     lineas: [["España", "900 99 94 96"]],
     resto: "+54 11 4130-0300", whatsapp: "+54 9 11 6876-8015", wa: "5491168768015", mail: "asistencia@coris.com.ar", ccgg: "https://coris.com.ar/assets/ccgg_espanol.pdf",
     clave: [["Asistencia médica por accidente", "USD 200.000"], ["Asistencia médica por enfermedad", "USD 200.000"], ["Medicamentos", "USD 1.500"], ["Odontología de urgencia", "USD 600"], ["Pérdida de equipaje (no aplica transporte terrestre)", "USD 1.200"], ["Demora en la entrega del equipaje", "USD 300 + 500"], ["Bolso protegido", "USD 1.000"], ["Electrónicos protegidos", "USD 1.400"], ["Vuelo demorado: hotel, comunicaciones y comida (6 h)", "USD 200"], ["Sala VIP por vuelo demorado o cancelado (2 h)", "USD 50"]],
@@ -2459,17 +2489,13 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
       <div class="asist-alert">${I("warn")}<p><b>Llamá antes de ir al médico</b>, o como máximo dentro de las 24 horas de lo que pasó. Si no, la asistencia puede no cubrirte.</p></div>
       <div class="info-card voucher">
         <p class="eyebrow">${esc(A.empresa)} · Plan ${esc(A.plan)}</p>
-        <div class="vno"><span><small>Voucher</small><b>${A.voucher}</b></span><button type="button" class="btn btn-soft" data-copy="${A.voucher}" data-label="Voucher">Copiar</button></div>
+        ${V.key && V.index && V.index._extra ? `<div class="vno"><span><small>Voucher</small><b>${esc(V.index._extra.coris)}</b></span><button type="button" class="btn btn-soft" data-copy="${esc(V.index._extra.coris)}" data-label="Voucher">Copiar</button></div>` : `<div class="vno"><span><small>Voucher</small><b>Protegido</b></span><button type="button" class="btn btn-soft" data-vault-open>Ver número</button></div>`}
         <dl class="facts">${row("Vigencia", A.vigencia)}${row("Destino", A.destino)}${row("Emitido por", A.emisor)}</dl>
       </div>
       <div class="info-card pdf-card">
         <h3>Voucher en PDF</h3>
-        <p style="color:var(--muted);font-size:15px">Es el documento original de Coris. Abrilo y, en el iPhone, tocá Compartir y elegí <b>Guardar en Archivos</b> para tenerlo sin conexión.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="${new URL("docs/asistencia-coris-facu.pdf", location.href).href}" target="_blank" rel="noopener">${I("ext")}Abrir y descargar PDF</a></div>
-        <div class="pdf-pages">
-          <figure><img src="docs/asistencia-p-1.jpg" alt="Voucher de Coris, página 1: datos del viajero y coberturas" loading="lazy" decoding="async"><figcaption>Página 1 · coberturas</figcaption></figure>
-          <figure><img src="docs/asistencia-p-2.jpg" alt="Voucher de Coris, página 2: teléfonos y recomendaciones" loading="lazy" decoding="async"><figcaption>Página 2 · teléfonos y recomendaciones</figcaption></figure>
-        </div>
+        <p style="color:var(--muted);font-size:15px">El documento original de Coris, con tus datos. Está protegido: se abre con Face ID, el PIN o la contraseña, y se puede descargar.</p>
+        <div class="btn-row">${docBtn("asist:coris", "Ver voucher de Coris")}</div>
       </div>
       <div class="group-h"><h2>Pedir ayuda</h2></div>
       <div class="info-card">
@@ -2503,19 +2529,20 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     const dateBox = s => { const dt = parse(s); return `<div class="tk-date"><b>${dt.getDate()}</b><span>${WD[dt.getDay()]} ${MO[dt.getMonth()]}</span></div>`; };
     let body = "";
     if (tab === "pasajes") {
-      body = `<p style="color:var(--muted);font-size:15.5px">Todos los trenes y vuelos en orden, con los horarios confirmados por la agencia. Llevá cada pasaje en el celular y en PDF.</p>
+      body = `${lockedCard()}<p style="color:var(--muted);font-size:15.5px">Todos los trenes y vuelos en orden, con los horarios de los pasajes. Cada uno tiene su pasaje con el QR.</p>
       <ol class="tickets">${LEGS.map(l => `
         <li class="tk${isPast(l.d) ? " past" : ""}${l.d === todayStr ? " now" : ""}">${dateBox(l.d)}
           <div class="tk-body"><span class="tk-mode">${I(l.mode === "Vuelo" ? "plane" : "train")}${l.mode}${l.d === todayStr ? " · hoy" : ""}</span><h3>${esc(l.route)}</h3>
             ${l.dep || l.arr ? `<p class="tk-times">${l.dep ? `<span><small>Sale</small>${l.dep}</span>` : ""}${l.dep && l.arr ? `<i aria-hidden="true">→</i>` : ""}${l.arr ? `<span><small>Llega</small>${l.arr}</span>` : ""}</p>` : ""}
-            ${l.note ? `<p class="tk-note">${esc(l.note)}</p>` : ""}</div></li>`).join("")}</ol>
+            ${l.note ? `<p class="tk-note">${esc(l.note)}</p>` : ""}${DOC_SLOTS[legSlot(l)] ? `<div class="btn-row">${docBtn(legSlot(l))}</div>` : ""}</div></li>`).join("")}</ol>
       <div class="group-h"><h2>Excursiones y entradas</h2><small>reservadas</small></div>
-      <ol class="tickets">${ACTS.map(x => `<li class="tk${isPast(x.d) ? " past" : ""}">${dateBox(x.d)}<div class="tk-body"><span class="tk-mode">${I("ticket")}Reservado</span><h3>${esc(x.name)}</h3><p class="tk-note">${esc(x.from)}</p><div class="btn-row"><a class="btn btn-soft" href="${x.go}" style="flex:0 1 auto;min-height:40px;border-radius:999px;font-size:14.5px">Ver el día</a></div></div></li>`).join("")}</ol>`;
+      <ol class="tickets">${ACTS.map(x => `<li class="tk${isPast(x.d) ? " past" : ""}">${dateBox(x.d)}<div class="tk-body"><span class="tk-mode">${I("ticket")}Reservado</span><h3>${esc(x.name)}</h3><p class="tk-note">${esc(x.from)}</p><div class="btn-row">${x.slot ? docBtn(x.slot) : ""}<a class="btn btn-soft" href="${x.go}" style="flex:0 1 auto;min-height:40px;border-radius:999px;font-size:14.5px">Ver el día</a></div></div></li>`).join("")}</ol>`;
     } else if (tab === "hoteles") {
       const N = HOTEL_NIGHTS;
-      body = `<p style="color:var(--muted);font-size:15.5px">Veinte noches en seis ciudades. Todo es solo alojamiento, sin desayuno.</p>
+      body = `${lockedCard()}<p style="color:var(--muted);font-size:15.5px">Veinte noches en seis ciudades. Todo es solo alojamiento, sin desayuno. Check-in desde las 14:00 y check-out hasta las 12:00.</p>
+      <div class="asist-alert">${I("warn")}<p><b>Vila Garden (Lisboa) tiene recepción con horario limitado.</b> Escribiles a vilagarden@vilaguesthouses.com o llamá al +351 21 813 8060 al menos 48 horas antes de llegar para coordinar la entrada.</p></div>
       <div class="info-grid">${CITIES.filter(c => c.hotel).map(c => { const h = PLACES[c.hotel], p = PH[c.hero]; return `<div class="info-card hotel-card">${p ? `<img src="${esc(p.src)}" alt="" loading="lazy" style="width:100%;aspect-ratio:16/8;object-fit:cover">` : ""}<div class="hb"><p class="eyebrow">${c.name} · ${esc(N[c.id] || "")}</p><h3>${esc(h.name)}</h3><p class="addr">${esc(h.addr)}</p><p class="addr">Solo alojamiento, sin desayuno</p>
-        <div class="btn-row"><a class="btn btn-primary" href="${DIR(c.hotel)}" target="_blank" rel="noopener">${I("go")}Cómo llegar</a><a class="btn btn-soft" href="${MAPS(c.hotel)}" target="_blank" rel="noopener">${I("pin")}Maps</a><a class="btn btn-soft" href="#${c.id}">Ver ${c.name}</a></div></div></div>`; }).join("")}</div>`;
+        <div class="btn-row">${docBtn("hotel:" + c.id, "Ver voucher")}<a class="btn btn-primary" href="${DIR(c.hotel)}" target="_blank" rel="noopener">${I("go")}Cómo llegar</a><a class="btn btn-soft" href="${MAPS(c.hotel)}" target="_blank" rel="noopener">${I("pin")}Maps</a><a class="btn btn-soft" href="#${c.id}">Ver ${c.name}</a></div></div></div>`; }).join("")}</div>`;
     } else if (tab === "asistencia") {
       body = asistHTML();
     } else if (tab === "reservas") {
@@ -2531,7 +2558,8 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
         <li class="bk${x.must ? " must" : ""}"><span class="cbox"><input type="checkbox" id="bk-${i}" aria-label="Ya reservé ${esc(x.name)}"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <div class="bk-body"><p class="bk-meta">${WD[dt.getDay()]} ${dt.getDate()} ${MO[dt.getMonth()]} · ${x.city} · ${x.must ? "<b>Imprescindible</b>" : "Conviene"}</p><h3>${esc(x.name)}</h3><p>${esc(x.note)}</p>
           <div class="btn-row">${x.url ? `<a class="btn btn-primary" href="${x.url}" target="_blank" rel="noopener">Sitio oficial</a>` : ""}<a class="btn btn-soft" href="${x.go}">Ver el día</a></div></div></li>`; }).join("")}</ol>
-      <div class="panel"><h3>Ya reservado por la agencia</h3><ul>${DONE_BOOK.map(x => { const dt = parse(x.d); return `<li><b>${WD[dt.getDay()]} ${dt.getDate()} ${MO[dt.getMonth()]}</b> · ${esc(x.name)}</li>`; }).join("")}</ul></div>`;
+      <div class="group-h"><h2>Ya reservado</h2><small>con voucher</small></div>${lockedCard()}
+      <ol class="tickets">${ACTS.map(x => `<li class="tk${isPast(x.d) ? " past" : ""}">${dateBox(x.d)}<div class="tk-body"><span class="tk-mode">${I("ticket")}Reservado</span><h3>${esc(x.name)}</h3><p class="tk-note">${esc(x.from)}</p><div class="btn-row">${docBtn(x.slot)}<a class="btn btn-soft" href="${x.go}">Ver el día</a></div></div></li>`).join("")}</ol>`;
     } else if (tab === "valija") {
       body = `<p style="color:var(--muted);font-size:15.5px">Ropa para 7 u 8 días; lavás una vez en el medio. Lo que marcás queda guardado en este celular.</p>
         <div class="pack-top"><output id="pcount" aria-live="polite">0 de 0</output><button class="btn btn-soft" id="reset" type="button">Desmarcar todo</button><div class="progress-line"><i id="barfill"></i></div></div>
@@ -2546,6 +2574,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     if (tab === "reservas") setupBookings();
     if (tab === "valija") setupPacking();
     $$("[data-copy]", view).forEach(b => b.addEventListener("click", () => copyText(b.dataset.copy, b.dataset.label)));
+    bindDocs(view);
     toTop(0);
   }
   function setupBookings() {
@@ -2572,9 +2601,236 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     reset.addEventListener("click", () => { if (!armed) { armed = true; reset.classList.add("armed"); reset.textContent = "Tocá de nuevo"; timer = setTimeout(disarm, 3500); return; } clearTimeout(timer); disarm(); boxes.forEach(b => b.checked = false); saved = {}; store(); refresh(); });
   }
 
+  /* ================= DOCUMENTOS PROTEGIDOS ================= */
+  /* Los vouchers viajan cifrados (AES-256-GCM). Sin la contraseña, el PIN o Face ID, nadie puede leerlos: ni en GitHub ni en el enlace. */
+  const VAULT_FILES = ["de320a66dd80f426", "2e161f2b805e13db", "d075dd492adbeacb", "cb86a7c8786a4470", "4690d26db3dd90c4", "d05798c97b33b5d4", "ca84d6af7c4c6d56", "d86a33daa95a5fc3", "bd3da98cd82b4683", "4dce875661ec5357", "ed7ae11279f30b6b", "fe2a2852fd4ecbb7", "c84bdf714e4b3c24", "cf2edc4df32db4b8", "46052039e0fd0c78", "7bd66ebfd92c6ee0", "3ecf372d601f3805", "1bec00133b51544b", "20130fcf35dace07", "9f3d1c5e63547c9b", "45c35091bbdc5aab", "68656e7997791fc4", "6d42a73b0c3035a3", "aeec57f0378a8e04", "7209601d9bf3ff29", "123c05698f04d5c3", "c1f27adb30d4f3be", "67d0c4549b5abe82", "764e8f8702c816cf", "823ac6703f3b962b", "d833ec3f695f8d59", "0c0a68022c1f9a03", "75c3a8e3f52492d3", "090d024aab822d21", "189959bb70916a7e", "539e996ae33c8480", "e97dab4a309e95af", "316f05441d43f779", "c1d80f960cc62a5b", "aa66896be3e76429"];
+  const DOC_SLOTS = {
+    "leg:2026-11-15|Lisboa": "Pasaje", "leg:2026-11-18|Oporto": "Pasaje", "leg:2026-11-21|Madrid": "Pasaje", "leg:2026-11-21|Córdoba": "Pasaje",
+    "leg:2026-11-25|Sevilla": "Pasaje", "leg:2026-11-25|Málaga": "Pasaje", "leg:2026-11-26|Sevilla": "Pasaje", "leg:2026-11-28|Valencia": "Pasaje",
+    "hotel:lisboa": "Voucher", "hotel:oporto": "Voucher", "hotel:madrid": "Voucher", "hotel:sevilla": "Voucher", "hotel:valencia": "Voucher", "hotel:barcelona": "Voucher",
+    "act:ronda": "Voucher", "act:alhambra": "Voucher", "act:sagrada": "Entrada", "asist:coris": "Voucher"
+  };
+  const legSlot = l => `leg:${l.d}|${l.route.split(" → ")[0].split(" (")[0]}`;
+  const V = { key: null, index: null, meta: null, hiddenAt: 0 };
+  const LOCAL_KEY = "facu-vault-local-v1";
+  const te = new TextEncoder(), td = new TextDecoder();
+  const ub64 = s => { const bin = atob(s.trim()); const u = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i); return u; };
+  const eb64 = u => { let s = ""; const a = new Uint8Array(u); for (let i = 0; i < a.length; i += 0x8000) s += String.fromCharCode.apply(null, a.subarray(i, i + 0x8000)); return btoa(s); };
+  const rnd = n => crypto.getRandomValues(new Uint8Array(n));
+  const hasCrypto = () => !!(window.crypto && crypto.subtle);
+  const readLocal = () => { try { return JSON.parse(localStorage.getItem(LOCAL_KEY) || "{}") || {}; } catch (e) { return {}; } };
+  const writeLocal = o => { try { localStorage.setItem(LOCAL_KEY, JSON.stringify(o)); } catch (e) {} };
+  async function vaultMeta() {
+    if (V.meta) return V.meta;
+    let r = await fetch("vault/vault.json", { cache: "no-cache" }).catch(() => null);
+    if ((!r || !r.ok) && typeof caches !== "undefined") r = await caches.match("vault/vault.json").catch(() => null);
+    if (!r || !r.ok) throw new Error("meta");
+    return (V.meta = await r.json());
+  }
+  async function aesKey(raw, usages) { return crypto.subtle.importKey("raw", raw, "AES-GCM", false, usages); }
+  async function pbkdf(secret, salt, iter) {
+    const base = await crypto.subtle.importKey("raw", te.encode(secret), "PBKDF2", false, ["deriveBits"]);
+    return new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt, iterations: iter }, base, 256));
+  }
+  async function openBox(keyRaw, box, aad) {
+    const k = await aesKey(keyRaw, ["decrypt"]);
+    return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: box.slice(0, 12), additionalData: te.encode(aad) }, k, box.slice(12)));
+  }
+  async function sealBox(keyRaw, data, aad) {
+    const k = await aesKey(keyRaw, ["encrypt"]); const iv = rnd(12);
+    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv, additionalData: te.encode(aad) }, k, data));
+    const out = new Uint8Array(12 + ct.length); out.set(iv); out.set(ct, 12); return out;
+  }
+  async function setMaster(raw) {
+    V.key = await aesKey(raw, ["decrypt"]);
+    const m = await vaultMeta();
+    V.index = JSON.parse(td.decode(await vaultFile(m.index)));
+  }
+  async function vaultFile(id) {
+    const r = await fetch(`vault/${id}.txt`).catch(() => null);
+    if (!r || !r.ok) throw new Error("file");
+    const box = ub64(await r.text());
+    return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: box.slice(0, 12), additionalData: te.encode(id) }, V.key, box.slice(12)));
+  }
+  /* Contraseña (primera vez en cada celular) */
+  async function unlockWithPass(pass) {
+    const m = await vaultMeta();
+    const kek = await pbkdf(pass.trim().toLowerCase(), ub64(m.salt), m.iter);
+    const raw = await openBox(kek, ub64(m.key), "vault-key");
+    await setMaster(raw); return raw;
+  }
+  /* PIN de 4 números: lo elige Facu en su celular. No está escrito en ningún archivo: solo queda cifrado en ese celular */
+  async function setPin(raw, pin) {
+    const salt = rnd(16), iter = 1200000;
+    const box = await sealBox(await pbkdf(pin, salt, iter), raw, "pin");
+    const L = readLocal(); L.pin = { salt: eb64(salt), iter, box: eb64(box), tries: 0, len: pin.length }; writeLocal(L);
+  }
+  async function unlockWithPin(pin) {
+    const L = readLocal(); if (!L.pin) throw new Error("nopin");
+    try {
+      const raw = await openBox(await pbkdf(pin, ub64(L.pin.salt), L.pin.iter), ub64(L.pin.box), "pin");
+      L.pin.tries = 0; writeLocal(L); await setMaster(raw); return true;
+    } catch (e) {
+      L.pin.tries = (L.pin.tries || 0) + 1;
+      if (L.pin.tries >= 5) delete L.pin;
+      writeLocal(L); return false;
+    }
+  }
+  /* Face ID: llave de acceso con la extensión PRF (iPhone con iOS 18 o más nuevo, desde la app instalada) */
+  const canPasskey = () => { try { if (window.top !== window) return false; } catch (e) { return false; } return !!(window.PublicKeyCredential && navigator.credentials && window.isSecureContext); };
+  async function prfKey(prfOut) {
+    const base = await crypto.subtle.importKey("raw", prfOut, "HKDF", false, ["deriveBits"]);
+    return new Uint8Array(await crypto.subtle.deriveBits({ name: "HKDF", hash: "SHA-256", salt: te.encode("facu-vault"), info: te.encode("faceid") }, base, 256));
+  }
+  async function prfEval(credId, salt) {
+    const a = await navigator.credentials.get({ publicKey: { challenge: rnd(32), allowCredentials: [{ type: "public-key", id: credId, transports: ["internal"] }], hints: ["client-device"], userVerification: "required", timeout: 60000, extensions: { prf: { eval: { first: salt } } } } });
+    const res = a.getClientExtensionResults && a.getClientExtensionResults();
+    if (!res || !res.prf || !res.prf.results || !res.prf.results.first) throw new Error("noprf");
+    return new Uint8Array(res.prf.results.first);
+  }
+  async function setFaceId(raw) {
+    const cred = await navigator.credentials.create({ publicKey: {
+      challenge: rnd(32), rp: { name: "Facu en Europa" }, user: { id: rnd(16), name: "facu", displayName: "Facu" },
+      pubKeyCredParams: [{ type: "public-key", alg: -7 }, { type: "public-key", alg: -257 }],
+      authenticatorSelection: { authenticatorAttachment: "platform", residentKey: "preferred", userVerification: "required" }, hints: ["client-device"], timeout: 60000, extensions: { prf: {} } } });
+    const ext = cred.getClientExtensionResults && cred.getClientExtensionResults();
+    if (!ext || !ext.prf || ext.prf.enabled === false) throw new Error("noprf");
+    const credId = new Uint8Array(cred.rawId), salt = rnd(32);
+    const box = await sealBox(await prfKey(await prfEval(credId, salt)), raw, "faceid");
+    const L = readLocal(); L.face = { id: eb64(credId), salt: eb64(salt), box: eb64(box) }; writeLocal(L);
+  }
+  async function unlockWithFace() {
+    const L = readLocal(); if (!L.face) throw new Error("noface");
+    const raw = await openBox(await prfKey(await prfEval(ub64(L.face.id), ub64(L.face.salt))), ub64(L.face.box), "faceid");
+    await setMaster(raw); return true;
+  }
+  const lockVault = () => { V.key = null; V.index = null; };
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) V.hiddenAt = Date.now();
+    else if (V.key && V.hiddenAt && Date.now() - V.hiddenAt > 5 * 60 * 1000) { lockVault(); if (curTab === "viaje") route(); }
+  });
+
+  /* Botón de cada documento */
+  const docBtn = (slot, label) => DOC_SLOTS[slot] ? `<button type="button" class="btn btn-doc" data-doc="${esc(slot)}">${I(V.key ? "ticket" : "lock")}${esc(label || "Ver " + DOC_SLOTS[slot].toLowerCase())}</button>` : "";
+  function bindDocs(root) {
+    $$("[data-doc]", root).forEach(b => b.addEventListener("click", () => openDoc(b.dataset.doc)));
+    $$("[data-vault-lock]", root).forEach(b => b.addEventListener("click", () => { lockVault(); toast("Documentos bloqueados"); route(); }));
+    $$("[data-vault-open]", root).forEach(b => b.addEventListener("click", () => askUnlock(() => route())));
+  }
+  const lockedCard = () => V.key
+    ? `<div class="vault-card open">${I("check")}<div><b>Documentos desbloqueados</b><p>Se bloquean solos si salís de la app más de 5 minutos.</p></div><button type="button" class="btn btn-soft" data-vault-lock>Bloquear</button></div>`
+    : `<div class="vault-card">${I("lock")}<div><b>Vouchers protegidos</b><p>Los pasajes, vouchers y códigos QR están cifrados. Se ven con Face ID, el PIN o la contraseña.</p></div><button type="button" class="btn btn-primary" data-vault-open>Desbloquear</button></div>`;
+
+  /* Desbloqueo */
+  function askUnlock(then) {
+    if (!hasCrypto()) { toast("Este navegador no puede abrir los documentos"); return; }
+    if (V.key) { then && then(); return; }
+    const L = readLocal();
+    const mode = L.face && canPasskey() ? "face" : L.pin ? "pin" : "pass";
+    renderUnlock(mode, then);
+  }
+  function renderUnlock(mode, then) {
+    const L = readLocal();
+    const alt = [];
+    if (mode !== "face" && L.face && canPasskey()) alt.push(`<button type="button" class="link-btn" data-mode="face">Usar Face ID</button>`);
+    if (mode !== "pin" && L.pin) alt.push(`<button type="button" class="link-btn" data-mode="pin">Usar el PIN</button>`);
+    if (mode !== "pass") alt.push(`<button type="button" class="link-btn" data-mode="pass">Usar la contraseña</button>`);
+    const body = mode === "face"
+      ? `<p class="vault-lead">Tocá el botón y mirá el celular.</p><button type="button" class="btn btn-primary wide" id="v-go">${I("lock")}Desbloquear con Face ID</button>`
+      : mode === "pin"
+      ? `<p class="vault-lead">Ingresá tu PIN de 4 números.</p><input class="pin-in" id="v-in" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="off" aria-label="PIN"><button type="button" class="btn btn-primary wide" id="v-go">Desbloquear</button>`
+      : `<p class="vault-lead">La primera vez en cada celular va la contraseña que te pasé. Después podés usar Face ID o un PIN.</p><input class="pass-in" id="v-in" type="text" autocapitalize="none" autocorrect="off" spellcheck="false" autocomplete="off" placeholder="palabra-palabra-palabra-palabra-00" aria-label="Contraseña"><button type="button" class="btn btn-primary wide" id="v-go">Desbloquear</button>`;
+    openSheet(`<div class="list-body vault-sheet"><h2>Documentos protegidos</h2>${body}<p class="v-err" id="v-err" role="alert"></p><div class="v-alt">${alt.join("")}</div></div>`);
+    const go = $("#v-go"), inp = $("#v-in"), err = $("#v-err");
+    $$("[data-mode]", sheetScroll).forEach(b => b.addEventListener("click", () => renderUnlock(b.dataset.mode, then)));
+    if (inp) { setTimeout(() => inp.focus(), 350); inp.addEventListener("keydown", e => { if (e.key === "Enter") go.click(); }); if (mode === "pin") inp.addEventListener("input", () => { inp.value = inp.value.replace(/\D/g, ""); if (inp.value.length === ((readLocal().pin || {}).len || 4)) go.click(); }); }
+    go.addEventListener("click", async () => {
+      err.textContent = ""; go.disabled = true; const label = go.innerHTML; go.textContent = "Abriendo…";
+      try {
+        if (mode === "face") { await unlockWithFace(); done(); }
+        else if (mode === "pin") {
+          if (!/^\d{4,6}$/.test(inp.value)) throw new Error("El PIN tiene 4 números");
+          if (await unlockWithPin(inp.value)) done();
+          else { const left = readLocal().pin ? 5 - readLocal().pin.tries : 0; inp.value = ""; throw new Error(left ? `PIN incorrecto. Te quedan ${left} intentos.` : "PIN incorrecto 5 veces: usá la contraseña."); }
+        } else {
+          let raw;
+          try { raw = await unlockWithPass(inp.value); } catch (e) { if (e.message === "meta" || e.message === "file") throw new Error("No se pudieron leer los documentos. Revisá la conexión."); throw new Error("Contraseña incorrecta. Revisá los guiones y los números."); }
+          offerRemember(raw, then); return;
+        }
+      } catch (e) {
+        if (!readLocal().pin && mode === "pin") { renderUnlock("pass", then); return; }
+        err.textContent = e && e.name === "NotAllowedError" ? "Face ID cancelado. Probá de nuevo o usá el PIN." : (e.message && !/^[a-z]+$/.test(e.message) ? e.message : "No se pudo desbloquear. Probá con la contraseña.");
+        go.disabled = false; go.innerHTML = label;
+      }
+    });
+    if (mode === "face") setTimeout(() => go.click(), 450);
+    function done() { buzz(); closeSheet(); toast("Documentos desbloqueados"); then && setTimeout(then, 320); }
+  }
+  function offerRemember(raw, then) {
+    const L = readLocal();
+    if (L.face || L.pin) { buzz(); closeSheet(); toast("Documentos desbloqueados"); then && setTimeout(then, 320); return; }
+    openSheet(`<div class="list-body vault-sheet"><h2>¿Cómo querés abrirlos la próxima vez?</h2>
+      <p class="vault-lead">Así no tenés que escribir la contraseña cada vez. Queda guardado solo en este celular.</p>
+      ${canPasskey() ? `<button type="button" class="btn btn-primary wide" id="v-face">${I("lock")}Usar Face ID</button>` : ""}
+      <div class="pin-set"><label for="v-pin">O elegí un PIN de 4 números</label><input class="pin-in" id="v-pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off"><button type="button" class="btn btn-soft wide" id="v-pin-go">Guardar PIN</button></div>
+      <p class="v-err" id="v-err" role="alert"></p>
+      <button type="button" class="link-btn" id="v-skip">Ahora no</button></div>`);
+    const err = $("#v-err"), finish = msg => { raw.fill(0); buzz(); closeSheet(); toast(msg); then && setTimeout(then, 320); };
+    const f = $("#v-face");
+    if (f) f.addEventListener("click", async () => {
+      err.textContent = ""; f.disabled = true;
+      try { await setFaceId(raw); finish("Face ID activado"); }
+      catch (e) { f.disabled = false; err.textContent = e && e.message === "noprf" ? "Este celular no permite usar Face ID desde la web (hace falta iOS 18 y la app instalada). Elegí un PIN." : "No se pudo activar Face ID. Elegí un PIN."; }
+    });
+    const pin = $("#v-pin"); pin.addEventListener("input", () => { pin.value = pin.value.replace(/\D/g, ""); });
+    $("#v-pin-go").addEventListener("click", async () => {
+      if (!/^\d{4}$/.test(pin.value)) { err.textContent = "El PIN tiene que tener 4 números."; return; }
+      if (/^(\d)\1{3}$/.test(pin.value) || "0123456789".includes(pin.value) || "9876543210".includes(pin.value)) { err.textContent = "Elegí un PIN menos obvio."; return; }
+      await setPin(raw, pin.value); finish("PIN guardado");
+    });
+    $("#v-skip").addEventListener("click", () => finish("Documentos desbloqueados"));
+  }
+
+  /* Visor */
+  let docUrls = [];
+  const freeDocUrls = () => { docUrls.forEach(u => URL.revokeObjectURL(u)); docUrls = []; };
+  function openDoc(slot) {
+    if (!V.key) { askUnlock(() => openDoc(slot)); return; }
+    const d = V.index && V.index[slot]; if (!d) { toast("Ese documento no está cargado"); return; }
+    freeDocUrls();
+    openSheet(`<div class="list-body doc-view"><h2>${esc(d.title)}</h2>
+      <div class="sheet-actions"><button type="button" class="btn btn-primary wide" id="doc-dl">${I("ext")}Descargar PDF</button></div>
+      <p class="doc-hint">Para mostrar el QR, subí el brillo y acercá la imagen con dos dedos.</p>
+      <div class="doc-pages">${d.pages.map((p, i) => `<figure><div class="doc-ph" style="aspect-ratio:${p.w}/${p.h}"><span>Abriendo…</span></div><figcaption>Página ${i + 1} de ${d.pages.length}</figcaption></figure>`).join("")}</div></div>`);
+    const figs = $$(".doc-ph", sheetScroll);
+    d.pages.forEach((p, i) => vaultFile(p.id).then(bytes => {
+      const u = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" })); docUrls.push(u);
+      if (figs[i] && document.body.contains(figs[i])) figs[i].innerHTML = `<img src="${u}" alt="${esc(d.title)}, página ${i + 1}">`;
+    }).catch(() => { if (figs[i]) figs[i].innerHTML = "<span>No se pudo abrir. Revisá la conexión o descargá todo para usarla sin señal.</span>"; }));
+    $("#doc-dl").addEventListener("click", async () => {
+      const b = $("#doc-dl"); b.disabled = true;
+      try {
+        const bytes = await vaultFile(d.pdf);
+        await savePdf(bytes, d.file);
+      } catch (e) { if (!(e && e.name === "AbortError")) toast("No se pudo descargar el PDF"); }
+      b.disabled = false;
+    });
+  }
+  async function savePdf(bytes, name) {
+    const blob = new Blob([bytes], { type: "application/pdf" });
+    const file = typeof File === "function" ? new File([blob], name, { type: "application/pdf" }) : null;
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: name }); return; }
+    const dlc = window.claude && window.claude.use ? await window.claude.use("downloads").catch(() => null) : null;
+    if (dlc) { await dlc.save({ filename: name, data: blob }); return; }
+    const u = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(u), 60000);
+  }
+  sheetWrap.addEventListener("transitionend", () => { if (!sheetOpen) freeDocUrls(); });
+
+
   /* ================= SIN CONEXIÓN (solo en la app instalable) ================= */
   const DATA_CACHE = "facu-data-v1";
-  const offlineList = () => [...new Set(Object.values(PH).map(p => p.src))].concat(CITIES.map(c => `vmap/${c.id}.b64.txt`));
+  const offlineList = () => [...new Set(Object.values(PH).map(p => p.src))].concat(CITIES.map(c => `vmap/${c.id}.b64.txt`), ["vault/vault.json"], VAULT_FILES.map(f => `vault/${f}.txt`));
   const isStandalone = () => window.navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
   const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   let dl = null;
@@ -2605,12 +2861,12 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     const install = isIOS && !isStandalone() ? `<div class="install-steps"><b>Instalala en el iPhone</b><ol><li>Abrí este enlace en <b>Safari</b>.</li><li>Tocá <b>Compartir</b> ${I("ext", "inline")} y después <b>Agregar a inicio</b>.</li><li>Abrí la app desde el ícono y tocá <b>Descargar todo</b>: así queda guardada para usar sin conexión.</li></ol></div>` : "";
     card.hidden = false;
     if (ready) {
-      card.innerHTML = `<div class="oc-row"><span class="oc-ic ok">${I("check")}</span><div><b>Lista para usar sin conexión</b><p>Itinerarios, fotos, mapas de las 10 ciudades y el voucher están guardados en este celular.</p></div></div>${install}`;
+      card.innerHTML = `<div class="oc-row"><span class="oc-ic ok">${I("check")}</span><div><b>Lista para usar sin conexión</b><p>Itinerarios, fotos, mapas de las 10 ciudades y todos los vouchers (cifrados) están guardados en este celular.</p></div></div>${install}`;
       return;
     }
     if (dl) { card.innerHTML = dl.html(); return; }
     const pct = Math.round((st.total - st.missing.length) / st.total * 100);
-    card.innerHTML = `<div class="oc-row"><span class="oc-ic">${I("bag")}</span><div><b>Usar sin conexión</b><p>Descargá una vez, con wifi, todas las fotos y los mapas de las 10 ciudades (unos 90 MB). Después la app funciona aunque no tengas señal.${pct ? ` Ya hay un ${pct}% guardado.` : ""}</p></div></div>
+    card.innerHTML = `<div class="oc-row"><span class="oc-ic">${I("bag")}</span><div><b>Usar sin conexión</b><p>Descargá una vez, con wifi, todas las fotos, los mapas de las 10 ciudades y los vouchers cifrados (unos 115 MB). Después la app funciona aunque no tengas señal.${pct ? ` Ya hay un ${pct}% guardado.` : ""}</p></div></div>
       ${install}
       <button type="button" class="btn btn-primary" id="dl-all">${I("go")}Descargar todo</button>
       <div class="oc-progress" hidden><div class="progress-line"><i></i></div><p></p></div>`;
@@ -2637,6 +2893,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
 })();
 
 </script>
+
 
 </body>
 </html>
