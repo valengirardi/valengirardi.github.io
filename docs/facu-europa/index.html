@@ -2674,7 +2674,7 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
     return `<div class="info-card cal-card">
         <h3>Avisos en el iPhone</h3>
         <p style="color:var(--muted);font-size:15px">Agregá los avisos al Calendario del iPhone: te llegan como notificación aunque no tengas internet ni la app abierta. Incluye vuelos, trenes, aperturas de check-in, excursiones y check-out de hoteles.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="avisos.ics">${I("city")}Agregar al Calendario</a>${canNotify ? `<button type="button" class="btn btn-soft" id="notif-on">${I("info")}${typeof Notification !== "undefined" && Notification.permission === "granted" ? "Avisos de la app activados" : "Activar avisos de la app"}</button>` : ""}</div>
+        <div class="btn-row"><a class="btn btn-primary" href="${window.__PWA ? "avisos.ics" : "https://valengirardi.github.io/facu-europa/avisos.ics"}" target="_blank" rel="noopener">${I("city")}Agregar al Calendario</a>${canNotify ? `<button type="button" class="btn btn-soft" id="notif-on">${I("info")}${typeof Notification !== "undefined" && Notification.permission === "granted" ? "Avisos de la app activados" : "Activar avisos de la app"}</button>` : ""}</div>
         <p class="doc-hint">Al tocar "Agregar al Calendario", el iPhone pregunta si querés agregar los eventos: tocá "Agregar todo".${canNotify && !standalone ? " Los avisos de la app funcionan solo desde la app instalada en la pantalla de inicio." : ""}</p>
       </div>
       ${act.length ? `<div class="group-h"><h2>Ahora</h2></div><ol class="rems">${act.map(r => remRow(r, { active: true })).join("")}</ol>` : ""}
