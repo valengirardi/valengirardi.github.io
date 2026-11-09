@@ -2768,26 +2768,33 @@ const BASEMAPS = {"barcelona": "maps/barcelona.pl.json", "cordoba": "maps/cordob
   }
   function offerRemember(raw, then) {
     const L = readLocal();
-    if (L.face || L.pin) { buzz(); closeSheet(); toast("Documentos desbloqueados"); then && setTimeout(then, 320); return; }
+    const wantFace = canPasskey() && !L.face, wantPin = !L.pin;
+    if (!wantFace && !wantPin) { raw.fill(0); buzz(); closeSheet(); toast("Documentos desbloqueados"); then && setTimeout(then, 320); return; }
     openSheet(`<div class="list-body vault-sheet"><h2>¿Cómo querés abrirlos la próxima vez?</h2>
       <p class="vault-lead">Así no tenés que escribir la contraseña cada vez. Queda guardado solo en este celular.</p>
-      ${canPasskey() ? `<button type="button" class="btn btn-primary wide" id="v-face">${I("lock")}Usar Face ID</button>` : ""}
-      <div class="pin-set"><label for="v-pin">O elegí un PIN de 4 números</label><input class="pin-in" id="v-pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off"><button type="button" class="btn btn-soft wide" id="v-pin-go">Guardar PIN</button></div>
+      ${wantFace ? `<div id="v-face-box"><button type="button" class="btn btn-primary wide" id="v-face">${I("lock")}Usar Face ID de este iPhone</button></div>` : L.face ? `<p class="vault-lead">${I("check", "inline")} Face ID ya está activado en este iPhone.</p>` : ""}
+      ${wantPin ? `<div class="pin-set" id="v-pin-box"><label for="v-pin">${wantFace ? "Y un PIN de 4 números, por si Face ID falla" : "Elegí un PIN de 4 números"}</label><input class="pin-in" id="v-pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off"><button type="button" class="btn btn-soft wide" id="v-pin-go">Guardar PIN</button></div>` : `<p class="vault-lead">${I("check", "inline")} El PIN ya está guardado en este celular.</p>`}
       <p class="v-err" id="v-err" role="alert"></p>
-      <button type="button" class="link-btn" id="v-skip">Ahora no</button></div>`);
-    const err = $("#v-err"), finish = msg => { raw.fill(0); buzz(); closeSheet(); toast(msg); then && setTimeout(then, 320); };
+      <button type="button" class="link-btn" id="v-skip">Listo</button></div>`);
+    const err = $("#v-err");
+    const finish = msg => { raw.fill(0); buzz(); closeSheet(); toast(msg); then && setTimeout(then, 320); };
+    const maybeDone = msg => { const l = readLocal(); if ((l.face || !canPasskey()) && l.pin) finish(msg); else { buzz(); toast(msg); } };
     const f = $("#v-face");
     if (f) f.addEventListener("click", async () => {
       err.textContent = ""; f.disabled = true;
-      try { await setFaceId(raw); finish("Face ID activado"); }
-      catch (e) { f.disabled = false; err.textContent = e && e.message === "noprf" ? "Este celular no permite usar Face ID desde la web (hace falta iOS 18 y la app instalada). Elegí un PIN." : "No se pudo activar Face ID. Elegí un PIN."; }
+      try { await setFaceId(raw); $("#v-face-box").innerHTML = `<p class="vault-lead">${I("check", "inline")} Face ID activado en este iPhone.</p>`; maybeDone("Face ID activado"); }
+      catch (e) { f.disabled = false; err.textContent = e && e.message === "noprf" ? "Este celular no permite usar Face ID desde la web (hace falta iOS 18 y la app instalada desde Safari). Usá el PIN." : e && e.name === "NotAllowedError" ? "Face ID cancelado. Probá de nuevo." : "No se pudo activar Face ID. Usá el PIN."; }
     });
-    const pin = $("#v-pin"); pin.addEventListener("input", () => { pin.value = pin.value.replace(/\D/g, ""); });
-    $("#v-pin-go").addEventListener("click", async () => {
-      if (!/^\d{4}$/.test(pin.value)) { err.textContent = "El PIN tiene que tener 4 números."; return; }
-      if (/^(\d)\1{3}$/.test(pin.value) || "0123456789".includes(pin.value) || "9876543210".includes(pin.value)) { err.textContent = "Elegí un PIN menos obvio."; return; }
-      await setPin(raw, pin.value); finish("PIN guardado");
-    });
+    const pin = $("#v-pin");
+    if (pin) {
+      pin.addEventListener("input", () => { pin.value = pin.value.replace(/\D/g, ""); });
+      $("#v-pin-go").addEventListener("click", async () => {
+        if (!/^\d{4}$/.test(pin.value)) { err.textContent = "El PIN tiene que tener 4 números."; return; }
+        if (/^(\d)\1{3}$/.test(pin.value) || "0123456789".includes(pin.value) || "9876543210".includes(pin.value)) { err.textContent = "Elegí un PIN menos obvio."; return; }
+        err.textContent = ""; await setPin(raw, pin.value); pin.value = "";
+        $("#v-pin-box").innerHTML = `<p class="vault-lead">${I("check", "inline")} PIN guardado en este celular.</p>`; maybeDone("PIN guardado");
+      });
+    }
     $("#v-skip").addEventListener("click", () => finish("Documentos desbloqueados"));
   }
 
